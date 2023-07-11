@@ -1,28 +1,21 @@
 import type { NextPage } from "next";
 
+import Footer from "../components/footer";
+import Navbar from "../components/navbar";
+
 const SignIn: NextPage = () => {
   return (
-    <div className="relative bg-black w-full overflow-hidden flex flex-col items-center justify-start">
-      <div className="self-stretch flex flex-col items-start justify-start">
+    <>
+      <Navbar />
+      <div className="relative bg-black w-full overflow-hidden flex flex-col items-center justify-start">
         <img
-          className="self-stretch relative max-w-full overflow-hidden h-[129px] shrink-0 object-cover"
+          className="self-stretch relative max-w-full overflow-hidden h-[821px] shrink-0 object-cover"
           alt=""
-          src="/image-31@2x.png"
+          src="/image-24@2x.png"
         />
       </div>
-      <img
-        className="self-stretch relative max-w-full overflow-hidden h-[821px] shrink-0 object-cover"
-        alt=""
-        src="/image-24@2x.png"
-      />
-      <div className="self-stretch relative h-[558px]">
-        <img
-          className="absolute top-[0px] left-[0px] w-[1920px] h-[558px] object-cover"
-          alt=""
-          src="/image-20@2x.png"
-        />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

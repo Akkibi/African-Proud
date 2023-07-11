@@ -12,6 +12,15 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/splitting/dist/splitting.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/splitting/dist/splitting-cells.css"
+        />
+        <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
       </Head>
       <Component {...pageProps} />
     </React.Fragment>
