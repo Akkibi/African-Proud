@@ -12,10 +12,14 @@ const Footer: NextPage = () => {
               </h2>
               <nav className="list-none mb-10">
                 <li>
-                  <a className="text-gray hover:text-white">First Link</a>
+                  <a className="text-gray hover:text-white" href="./contact">
+                    Contact
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray hover:text-white">Second Link</a>
+                  <a className="text-gray hover:text-white" href="./sponsor">
+                    Partenaires
+                  </a>
                 </li>
                 <li>
                   <a className="text-gray hover:text-white">Third Link</a>
@@ -31,13 +35,17 @@ const Footer: NextPage = () => {
               </h2>
               <nav className="list-none mb-10">
                 <li>
-                  <a className="text-gray hover:text-white">First Link</a>
+                  <a className="text-gray hover:text-white" href="./about">
+                    Qui sommes nous?
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray hover:text-white">Second Link</a>
+                  <a className="text-gray hover:text-white" href="./faq">
+                    FAQ
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray hover:text-white">Third Link</a>
+                  <a className="text-gray hover:text-white">Concours</a>
                 </li>
                 <li>
                   <a className="text-gray hover:text-white">Fourth Link</a>
