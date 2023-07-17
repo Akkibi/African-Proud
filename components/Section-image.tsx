@@ -2,12 +2,12 @@ import type { NextPage } from "next";
 import { useMemo } from "react";
 import CSS, { Property } from "csstype";
 
-type SectionContentType = {
+type SectionImageType = {
   /** Style props */
   frameHeight?: Property.Height;
 };
 
-const SectionContent: NextPage<SectionContentType> = ({ frameHeight }) => {
+const SectionImage: NextPage<SectionImageType> = ({ frameHeight }) => {
   const frameDivStyle: CSS.Properties = useMemo(() => {
     return {
       height: frameHeight,
@@ -41,7 +41,7 @@ const SectionContent: NextPage<SectionContentType> = ({ frameHeight }) => {
           <img
             className="object-cover object-center rounded h-full w-full"
             alt="hero"
-            src="https://dummyimage.com/1920x1080/1d594e/ffffff.jpg&text=16/9+vid%C3%A9o+"
+            src="https://dummyimage.com/1920x1080/1d594e/ffffff.jpg&text=16/9+image+"
           />
         </div>
       </div>
@@ -49,4 +49,4 @@ const SectionContent: NextPage<SectionContentType> = ({ frameHeight }) => {
   );
 };
 
-export default SectionContent;
+export default SectionImage;

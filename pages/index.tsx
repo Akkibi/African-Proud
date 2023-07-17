@@ -16,8 +16,8 @@ const Home: NextPage = () => {
         />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw]">
           <h1 className="w-full text-center text-[8vw] font-title-font m-0">
-            <label className="text-secondary">AFRICAN </label>
-            <label id="outline-title">PROUD</label>
+            <span className="text-secondary">AFRICAN </span>
+            <span id="outline-title">PROUD</span>
           </h1>
           <h2 className="w-full text-center text-11xl m-0 md:text-31xl">
             Concours organisé par DJ Moh green
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
           </button>
         </div>
       </div>
-      <SectionContent frame65Height="100vh" />
+      <SectionContent frameHeight="100vh" />
       <section
         className="text-gray-400 bg-black w-full body-font border-y-2 border-solid border-fourth"
         id="numbers"

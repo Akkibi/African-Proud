@@ -69,7 +69,7 @@ const Contact: NextPage = () => {
             <div className="flex flex-wrap -m-2">
               <div className="p-2 w-1/2">
                 <div className="relative">
-                  <label htmlFor="name" className="leading-7 text-sm text-gray">
+                  <label htmlFor="name" className="leading-8 text-sm text-gray">
                     Name
                   </label>
                   <input
@@ -84,7 +84,7 @@ const Contact: NextPage = () => {
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-8 text-sm text-gray-400"
                   >
                     Email
                   </label>
@@ -100,7 +100,7 @@ const Contact: NextPage = () => {
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-8 text-sm text-gray-400"
                   >
                     Message
                   </label>

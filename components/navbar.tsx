@@ -44,46 +44,46 @@ const Navbar: NextPage = () => {
       >
         <div className=" h-16 w-full bg-black"></div>
         <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
           href="./"
         >
           <span className="h-5  w-7 bg-primary -translate-x-10 rounded"></span>
           <span className=" text-white ml-5 text-11xl w-full">Accueil</span>
         </a>
         <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          href="./video"
+        >
+          <span className="h-5  w-7 bg-primary -translate-x-10 rounded"></span>
+          <span className=" text-white ml-5 text-11xl w-full">Videos</span>
+        </a>
+        <a
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          href="./music"
+        >
+          <span className="h-5  w-7 bg-primary -translate-x-10 rounded"></span>
+          <span className=" text-white ml-5 text-11xl w-full">Musique</span>
+        </a>
+        <a
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
           href="./faq"
         >
           <span className="h-5 w-7 bg-primary -translate-x-10 rounded"></span>
           <span className=" text-white ml-5 text-11xl w-full">FAQ</span>
         </a>
         <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
-          href="./sponsor"
-        >
-          <span className="h-5 w-7 bg-primary -translate-x-10 rounded"></span>
-          <span className=" text-white ml-5 text-11xl w-full">Partenariat</span>
-        </a>
-        <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
           href="./agenda"
         >
           <span className="h-5 w-7 bg-primary -translate-x-10 rounded"></span>
           <span className=" text-white ml-5 text-11xl w-full">Agenda</span>
         </a>
         <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
+          className="py-5 border-b-2 border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
           href="./about"
         >
           <span className="h-5 w-7 bg-primary -translate-x-10 rounded"></span>
           <span className=" text-white ml-5 text-11xl w-full">À propos</span>
-        </a>
-        <a
-          className="py-5 border-t border-b border-solid border-tertiary no-underline hover:tracking-widest hover:font-bold hover:translate-x-5 duration-150 flex flex-row items-center cursor-pointer"
-          href="./contact"
-        >
-          <span className="h-5 w-7 bg-primary -translate-x-10 rounded"></span>
-          <span className=" text-white ml-5 text-11xl w-full">Contact</span>
         </a>
         <div className="block md:hidden">
           <button
@@ -131,7 +131,7 @@ const Navbar: NextPage = () => {
             </a>
             <a
               className=" no-underline text-white ml-4 hover:text-gray-400 cursor-pointer"
-              href="./video"
+              href="./concours"
             >
               Concours
             </a>

@@ -26,9 +26,9 @@ const Sponsor: NextPage = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full h-20 bg-black"></div>
+      <div className="w-full h-16 bg-black"></div>
       <PartnersSection />
-      <div className="relative border-t border-solid text-white border-tertiary bg-black max-w-[1800] min-h-[80vh] flex flex-col py-10 items-center justify-center gap-lg">
+      <div className="relative border-t border-solid text-white border-tertiary bg-black min-h-[80vh] flex flex-col items-center justify-center gap-lg">
         <img
           src="./sponsor.jpg"
           alt=""
