@@ -1,163 +1,431 @@
 import type { NextPage } from "next";
+import { useState } from "react";
+import { useEffect } from "react";
 
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const Register: NextPage = () => {
+  const [showForm, setShowForm] = useState<string>("");
   return (
     <>
       <Navbar />
-      <div className="relative bg-black w-full overflow-hidden flex flex-col items-center justify-start">
-        <img
-          className="relative w-[1926px] h-[854px] object-cover"
-          alt=""
-          src="/image-23@2x.png"
-        />
-      </div>
-      {/* bloc importé */}
-      <section className="bg-white dark:bg-gray-900">
-        <div className="flex justify-center min-h-screen">
-          <div className="hidden bg-cover lg:block lg:w-2/5 bg[url(https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80)]"></div>
-
-          <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+      <section className="text-white bg-light-gray border-lighter-gray bg-opacity-40">
+        <div className="lg:flex justify-center">
+          <div className="h-screen bg-cover lg:w-1/2 border-r border-tertiary border-solid">
+            <div className="flex items-center justify-center h-full w-full px-20 bg-[url(../public/sponsor.jpg)]">
+              <div>
+                <h2 className="text-11xl text-center font-bold sm:text-3xl">
+                  Explication concours
+                </h2>
+                <iframe
+                  className="w-[80vw] lg:w-[40vw] aspect-video rounded"
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center lg:w-1/2 w-full bg-black p-8 px-12 min-h-screen">
             <div className="w-full">
-              <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-                Get your free account now.
+              <h1 className="text-11xl font-semibold tracking-wider text-gray-800 capitalize text-white">
+                Créez votre compte.
               </h1>
 
-              <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Let's get you all set up so you can verify your personal account
-                and begin setting up your profile.
+              <p className="mt-4 text-gray-500 text-gray-400">
+                Préparons tout ensemble pour que vous puissiez commencer avec un
+                compte.
               </p>
 
               <div className="mt-6">
-                <h1 className="text-gray-500 dark:text-gray-300">
-                  Select type of account
+                <h1 className="text-gray-500">
+                  Selectionnez le type de compte
                 </h1>
 
                 <div className="mt-3 md:flex md:items-center md:-mx-2">
-                  <button className="flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-
-                    <span className="mx-2">client</span>
+                  <button
+                    className="button-animate w-full px-6 py-3 text-black bg-primary rounded md:w-auto md:mx-2 focus:outline-none font-bold"
+                    onClick={() => setShowForm("public")}
+                  >
+                    <span className="flex justify-center items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-6 h-6 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                      Public
+                    </span>
                   </button>
 
-                  <button className="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-
-                    <span className="mx-2">worker</span>
+                  <button
+                    className="button-animate bg-tertiary w-full px-6 py-3 mt-4  border border-solid rounded md:mt-0 md:w-auto md:mx-2 text-white font-bold  focus:outline-none"
+                    onClick={() => setShowForm("artiste")}
+                  >
+                    <span className="mx-2 flex justify-center items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-6 h-6 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      Artiste
+                    </span>
                   </button>
                 </div>
               </div>
-
-              <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              <form
+                className={` grid-cols-1 gap-6 mt-8 md:grid-cols-2 ${
+                  showForm == "public" ? "grid" : "hidden"
+                }`}
+              >
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    First Name
-                  </label>
+                  <label className="block mb-2 text-sm text-gray">Genre</label>
+                  <fieldset className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray">
+                    <div className="px-3 w-1/3 flex bg-light-gray border-lighter-gray bg-opacity-40">
+                      <input
+                        type="radio"
+                        id="malePublic"
+                        name="public"
+                        value="male"
+                      />
+                      <label
+                        htmlFor="malePublic"
+                        className=" py-1 leading-8 text-center w-full text-white"
+                      >
+                        Homme
+                      </label>
+                    </div>
+                    <div className="px-3 w-1/3 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border-l-[1px] flex">
+                      <input
+                        className="bg-secondary"
+                        type="radio"
+                        id="femalePublic"
+                        name="public"
+                        value="female"
+                      />
+                      <label
+                        htmlFor="femalePublic"
+                        className=" py-1 leading-8 w-full text-center text-white"
+                      >
+                        Femme
+                      </label>
+                    </div>
+                    <div className="px-3 w-1/3 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border-l-[1px] flex">
+                      <input
+                        type="radio"
+                        id="otherPublic"
+                        name="public"
+                        value="other"
+                      />
+                      <label
+                        htmlFor="otherPublic"
+                        className=" py-1 leading-8 w-full text-center text-white"
+                      >
+                        Autre
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">Pseudo</label>
                   <input
                     type="text"
-                    placeholder="John"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Exemple Akkibi"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Last name
+                  <label className="block mb-2 text-sm text-gray">
+                    Numéro de téléphone
+                  </label>
+                  <div className="flex flex-row m-0 p-0 ">
+                    <select
+                      placeholder="XXX-XX-XXXX-XXX"
+                      className="w-1/3 block px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                    >
+                      <option value="javascript">+XX</option>
+                      <option value="javascript" disabled>
+                        —————
+                      </option>
+                      <option value="javascript">+66</option>
+                      <option value="python">+55</option>
+                      <option value="c++">+33</option>
+                      <option value="java">+44</option>
+                      <option value="javascript">+66</option>
+                      <option value="python">+55</option>
+                      <option value="c++">+33</option>
+                      <option value="java">+44</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="XX XX XX XX XX"
+                      className="block w-2/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">
+                    Adresse E-mail
+                  </label>
+                  <input
+                    type="emailPublic"
+                    name="emailPublic"
+                    id="emailPublic"
+                    placeholder="example@example.com"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">
+                    Mot de passe
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Entrez votre mot de passe"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">
+                    Confirmez le mot de passe
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Confirmez votre mot de passe"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                  />
+                </div>
+
+                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
+                  <span className="inline-flex items-center">
+                    Créer un compte
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 rtl:-scale-x-100"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </form>
+              <form
+                className={` grid-cols-1 gap-6 mt-8 md:grid-cols-2 ${
+                  showForm == "artiste" ? "grid" : "hidden"
+                }`}
+              >
+                <div>
+                  <label className="block mb-2 text-sm text-gray">Genre</label>
+                  <fieldset className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray">
+                    <div className="px-3 w-1/3 flex bg-light-gray border-lighter-gray bg-opacity-40">
+                      <input
+                        type="radio"
+                        id="maleArtist"
+                        name="artist"
+                        value="male"
+                      />
+                      <label
+                        htmlFor="maleArtist"
+                        className=" py-1 leading-8 text-center w-full text-white"
+                      >
+                        Homme
+                      </label>
+                    </div>
+                    <div className="px-3 w-1/3 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border-l-[1px] flex">
+                      <input
+                        type="radio"
+                        id="femaleArtist"
+                        name="artist"
+                        value="female"
+                      />
+                      <label
+                        htmlFor="femaleArtist"
+                        className=" py-1 leading-8 w-full text-center text-white"
+                      >
+                        Femme
+                      </label>
+                    </div>
+                    <div className="px-3 w-1/3 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border-l-[1px] flex">
+                      <input
+                        type="radio"
+                        id="otherArtist"
+                        name="artist"
+                        value="other"
+                      />
+                      <label
+                        htmlFor="otherArtist"
+                        className=" py-1 leading-8 w-full text-center text-white"
+                      >
+                        Autre
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">Prénom</label>
+                  <input
+                    type="text"
+                    placeholder="John"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded bg-  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-2 text-sm text-gray">
+                    Nom d'artiste
                   </label>
                   <input
                     type="text"
                     placeholder="Snow"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="block mb-2 text-sm text-gray">
                     Phone number
                   </label>
-                  <input
-                    type="text"
-                    placeholder="XXX-XX-XXXX-XXX"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                  />
+                  <div className="flex flex-row m-0 p-0 ">
+                    <select
+                      placeholder="XXX-XX-XXXX-XXX"
+                      className="w-1/3 block px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                    >
+                      <option value="javascript">Indicatif</option>
+                      <option value="javascript" disabled>
+                        —————
+                      </option>
+                      <option value="javascript">+66</option>
+                      <option value="python">+55</option>
+                      <option value="c++">+33</option>
+                      <option value="java">+44</option>
+                      <option value="javascript">+66</option>
+                      <option value="python">+55</option>
+                      <option value="c++">+33</option>
+                      <option value="java">+44</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="XX XX XX XX XX"
+                      className="block w-2/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Email address
+                  <label className="block mb-2 text-sm text-gray">
+                    Adresse E-mail
                   </label>
                   <input
                     type="email"
-                    placeholder="johnsnow@example.com"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    name="email"
+                    id="email"
+                    placeholder="example@example.com"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm text-gray">Age</label>
+                  <input
+                    type="number"
+                    name="age"
+                    id="age"
+                    placeholder="1-100"
+                    min="1"
+                    max="100"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm text-gray">Pays</label>
+                  <input
+                    type="text"
+                    name="country"
+                    id="country"
+                    placeholder="example@example.com"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Password
+                  <label className="block mb-2 text-sm text-gray">Ville</label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Exemple Lagos"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm text-gray">
+                    Mot de passe
                   </label>
                   <input
                     type="password"
-                    placeholder="Enter your password"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Entrez votre mot de passe"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Confirm password
+                  <label className="block mb-2 text-sm text-gray">
+                    Confirmez le mot de passe
                   </label>
                   <input
                     type="password"
-                    placeholder="Enter your password"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Confirmez votre mot de passe"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                   />
                 </div>
 
-                <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  <span>Sign Up </span>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 rtl:-scale-x-100"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black capitalize transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
+                  <span className="inline-flex items-center">
+                    Créer un compte
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 rtl:-scale-x-100"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
                 </button>
               </form>
             </div>
