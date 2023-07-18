@@ -23,7 +23,7 @@ module.exports = {
         gray: "#7B9D97",
         "light-gray": "#3E3E3E",
         "dark-gray": "#232323",
-        lemonchiffon: "fffffff",
+        "lighter-gray": "#6c6c6c",
       },
       fontFamily: {
         "title-font": "'Krona One'",

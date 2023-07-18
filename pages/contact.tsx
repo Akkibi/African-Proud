@@ -18,8 +18,8 @@ const Contact: NextPage = () => {
             </p>
           </div>
           <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <fieldset className="w-full flex flex-wrap list-none my-4 p-0 rounded overflow-hidden border-solid border">
-              <div className="p-2 w-1/3 flex">
+            <fieldset className="w-full flex flex-wrap bg-light-gray bg-opacity-40 list-none py-1 px-0 rounded overflow-hidden border-solid border outline-none border-lighter-gray">
+              <div className="pl-2 w-1/3 flex">
                 <input
                   type="radio"
                   id="Public"
@@ -29,12 +29,12 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Public"
-                  className="p-2 text-center w-full text-white"
+                  className="pl-2 text-center w-full text-white leading-8"
                 >
                   Public
                 </label>
               </div>
-              <div className="p-2 w-1/3 bg-light-gray border-solid border-x-[1px] flex">
+              <div className="pl-2 w-1/3 border-solid border-x flex">
                 <input
                   type="radio"
                   id="Artistes"
@@ -44,12 +44,12 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Artistes"
-                  className="p-2 w-full text-center text-white"
+                  className="pl-2 w-full text-center text-white leading-8"
                 >
                   Artistes
                 </label>
               </div>
-              <div className="p-2 w-1/3 flex">
+              <div className="pl-2 w-1/3 flex">
                 <input
                   type="radio"
                   id="Partenariat"
@@ -59,7 +59,7 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Partenariat"
-                  className="p-2 w-full text-center text-white"
+                  className="pl-2 w-full text-center text-white leading-8"
                 >
                   Partenariat
                 </label>
@@ -76,7 +76,7 @@ const Contact: NextPage = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border-lighter-gray border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
               </div>
@@ -92,7 +92,7 @@ const Contact: NextPage = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
+                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border border-lighter-gray focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
                   />
                 </div>
               </div>
@@ -108,7 +108,7 @@ const Contact: NextPage = () => {
                     id="message"
                     name="message"
                     maxLength={1000}
-                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border focus:border-secondary focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 leading-6 transition-colors duration-200 ease-in-out overflow-x-hidden resize-y"
+                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border border-lighter-gray focus:border-secondary focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 leading-6 transition-colors duration-200 ease-in-out overflow-x-hidden resize-y"
                   ></textarea>
                 </div>
               </div>

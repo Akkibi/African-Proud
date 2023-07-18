@@ -20,8 +20,31 @@
       "Open Sans",
       "Helvetica Neue",
       sans-serif;
-    font-size: 1rem;
+    font-size: 16px;
   }
+}
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #000;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #f29f05;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    #f2cb05 25%,
+    transparent 25%,
+    transparent 50%,
+    #f2cb05 50%,
+    #f2cb05 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 body {
@@ -89,4 +112,34 @@ body {
 }
 #backdrop-grayscale {
   backdrop-filter: grayscale(100%);
+}
+input[type="radio"] {
+  display: block;
+  position: relative;
+  top: 45%;
+  transform: translate(0, -50%);
+  height: 20px;
+  width: 20px;
+  border: solid #277365 1px;
+  border-radius: 25%;
+  appearance: none;
+  background-color: #fff;
+  font: inherit;
+  color: currentColor;
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 25%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 5rem 5rem #277365;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
 }

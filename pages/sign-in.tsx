@@ -66,7 +66,7 @@ const SignIn: NextPage = () => {
                       name="email"
                       id="email"
                       placeholder="example@example.com"
-                      className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border-lighter-gray border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
 
@@ -93,7 +93,7 @@ const SignIn: NextPage = () => {
                       minLength={8}
                       required={true}
                       placeholder=""
-                      className="w-full rounded text-11xl bg-light-gray text-white bg-opacity-40 border-solid border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full rounded text-11xl bg-light-gray text-white bg-opacity-40 border-solid border border-lighter-gray focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
 
