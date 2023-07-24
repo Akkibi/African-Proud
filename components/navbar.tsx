@@ -38,7 +38,7 @@ const Navbar: NextPage = () => {
   return (
     <>
       <div
-        className={`fixed flex flex-col bg-[rgba(0,0,0,0.85)] w-full rounded-br-[100%] duration-300 h-screen ease-out z-40 lg:hidden ${
+        className={`fixed flex flex-col bg-[rgba(0,0,0,0.85)] w-full rounded-br-[100%] duration-300 h-screen ease-out z-40 top-0 lg:hidden ${
           burgerOpen === false ? "-translate-y-full " : "!rounded-none"
         }`}
       >
@@ -102,7 +102,7 @@ const Navbar: NextPage = () => {
       </div>
       <header
         className={`body-font top-0 w-full fixed z-50 text-white bg-[rgba(0,0,0,0.5)] duration-150 ${
-          !show ? "-translate-y-full" : ""
+          !show && document ? "-translate-y-full" : ""
         }`.trim()}
         id="navbar"
       >
@@ -112,9 +112,9 @@ const Navbar: NextPage = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               className="w-10 h-10 text-black p-2 bg-primary rounded-full"
               viewBox="0 0 24 24"
             >
@@ -137,7 +137,7 @@ const Navbar: NextPage = () => {
             </a>
             <a
               className=" no-underline text-white ml-4 hover:text-gray-400 cursor-pointer"
-              href="./music"
+              href="./musicPage"
             >
               Musique
             </a>

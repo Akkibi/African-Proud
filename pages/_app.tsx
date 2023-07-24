@@ -20,7 +20,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://unpkg.com/splitting/dist/splitting-cells.css"
         />
-        <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+        <script
+          src="https://www.google.com/recaptcha/api.js"
+          async
+          defer
+        ></script>
       </Head>
       <Component {...pageProps} />
     </React.Fragment>

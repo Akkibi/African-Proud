@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  password String @unique
+}
+
+model Public {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  genre          String
+  pseudo         String
+  phoneNumber    String
+  phoneNumberCountry String
+  email          String
+  password       String
+}
+
+model Artist {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  genre          String
+  firstName      String
+  lastName       String
+  pseudo         String
+  age            Int
+  city           String
+  country        String
+  phoneNumber    String
+  phoneNumberCountry String
+  email          String
+  password       String
+}
+
+model Music {
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String
+  content   String?
+  link      String
+  published Boolean @default(false)
+}
+
+model Video {
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String
+  content   String?
+  link      String
+  published Boolean @default(false)
+}
