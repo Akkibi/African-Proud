@@ -83,7 +83,7 @@ const Home: NextPage = () => {
                 évènements.
               </p>
               <button className="button-animate flex mx-auto mt-6 text-black bg-primary text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
-                <span>Button</span>
+                <span>Participer</span>
               </button>
             </div>
             <div className="sm:w-1/2 mb-10 px-4">
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
                 ainsi qu'un voyage et une production tous frais payés.
               </p>
               <button className="button-animate flex mx-auto mt-6 bg-tertiary text-white text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
-                <span>Button</span>
+                <span>Participer</span>
               </button>
             </div>
           </div>

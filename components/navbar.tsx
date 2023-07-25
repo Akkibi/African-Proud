@@ -33,7 +33,6 @@ const Navbar: NextPage = () => {
       };
     }
   }, [lastScrollY]);
-  const [gray, setGray] = useState(true);
 
   return (
     <>
