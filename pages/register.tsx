@@ -252,7 +252,6 @@ const Register: NextPage = () => {
                     required
                   />
                 </div>
-                <div className="g-recaptcha" data-sitekey="your_site_key"></div>
                 <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
                   <span className="inline-flex items-center">
                     Créer un compte
@@ -490,7 +489,6 @@ const Register: NextPage = () => {
                     required
                   />
                 </div>
-
                 <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black capitalize transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
                   <span className="inline-flex items-center">
                     Créer un compte
