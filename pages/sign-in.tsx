@@ -1,9 +1,15 @@
 import type { NextPage } from "next";
+import { useRef } from "react";
 
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const SignIn: NextPage = () => {
+  const username = useRef("");
+  const password = useRef("");
+
+  const onSubmit = () => {};
+
   return (
     <>
       <Navbar />
@@ -62,6 +68,9 @@ const SignIn: NextPage = () => {
                       Adresse E-mail
                     </label>
                     <input
+                      onChange={(e) => {
+                        username.current = e.target.value;
+                      }}
                       type="email"
                       name="email"
                       id="email"
@@ -87,6 +96,9 @@ const SignIn: NextPage = () => {
                     </div>
 
                     <input
+                      onChange={(e) => {
+                        password.current = e.target.value;
+                      }}
                       type="password"
                       name="password"
                       id="password"
@@ -98,14 +110,17 @@ const SignIn: NextPage = () => {
                   </div>
 
                   <div className="mt-6">
-                    <button className=" button-animate w-full px-4 py-3 tracking-wide text-black font-bold transition-colors duration-300 transform bg-secondary rounded">
+                    <button
+                      onClick={onSubmit}
+                      className=" button-animate w-full px-4 py-3 tracking-wide text-black font-bold transition-colors duration-300 transform bg-secondary rounded"
+                    >
                       <span>Se connecter</span>
                     </button>
                   </div>
                 </form>
 
                 <p className="mt-6 text-sm text-center text-gray-400">
-                  Pas encore de compte?{" "}
+                  Pas encore de compte?
                   <a
                     href="#"
                     className="text-primary focus:outline-none focus:underline hover:underline"

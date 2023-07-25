@@ -13,7 +13,7 @@ datasource db {
 model Admin {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  name  String
   password String @unique
 }
 
@@ -21,11 +21,14 @@ model Public {
   id             Int      @id @default(autoincrement())
   createdAt      DateTime @default(now())
   genre          String
-  pseudo         String
-  phoneNumber    String
+  username       String
+  phoneNumber    String @unique
   phoneNumberCountry String
-  email          String
+  email          String @unique
+  emailVerified DateTime
   password       String
+  // accounts      Account[]
+  // sessions      Session[]
 }
 
 model Artist {
@@ -34,14 +37,16 @@ model Artist {
   genre          String
   firstName      String
   lastName       String
-  pseudo         String
+  username       String
   age            Int
   city           String
   country        String
-  phoneNumber    String
+  phoneNumber    String @unique
   phoneNumberCountry String
-  email          String
+  email          String? @unique
   password       String
+  // accounts      Account[]
+  // sessions      Session[]
 }
 
 model Music {

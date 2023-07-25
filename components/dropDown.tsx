@@ -21,7 +21,7 @@ const DropDown: NextPage<DropdownType> = ({ mainTitle, mainText }) => {
           }}
           className="relative flex w-full items-center rounded-none border-b border-solid border-fourth bg-black py-4 px-5 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none"
         >
-          <h2 className="text-white text-left font-bold w-full ">
+          <h2 className="text-xl sm:text-11xl text-white text-left font-bold w-full ">
             {mainTitle == "" || mainTitle == undefined
               ? "Quelle est la question que tu te pose?"
               : mainTitle}

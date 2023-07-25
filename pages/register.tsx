@@ -5,6 +5,38 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const Register: NextPage = () => {
+  const [genre, setGenre] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>();
+  const [phoneNumberCountry, setPhoneNumberCountry] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          genre,
+          username,
+          email,
+          phoneNumber,
+          phoneNumberCountry,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
   const [showForm, setShowForm] = useState<string>("");
   return (
     <>
@@ -108,6 +140,7 @@ const Register: NextPage = () => {
                 </div>
               </div>
               <form
+                onSubmit={handleSubmit}
                 className={` grid-cols-1 gap-6 mt-8 md:grid-cols-2 ${
                   showForm == "public" ? "grid" : "hidden"
                 }`}

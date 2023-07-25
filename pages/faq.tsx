@@ -11,9 +11,12 @@ const Faq: NextPage = () => {
       <Navbar />
       <div className="bg-black min-h-full">
         <section className="text-white container py-24 mx-auto md:px-6 xl:px-24 min-h-screen">
-          <h1 className="mb-10 sm:text-31xl text-11xl font-bold w-full text-center">
-            Frequently asked questions
+          <h1 className="sm:text-31xl text-11xl font-bold w-full text-center">
+            FAQ des questions fréquentes
           </h1>
+          <p className="mb-10 w-full text-center opacity-50">
+            Contactez nous si vous avez d'autres suggestions.
+          </p>
           <DropDown />
           <DropDown
             mainTitle="Question 2 courte?"
