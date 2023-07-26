@@ -52,7 +52,10 @@ const SignIn: NextPage = () => {
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                   </svg>
                 </div>
-
+                <h1 className="text-animate text-11xl sm:text-31xl font-semibold tracking-wider text-gray-800 capitalize text-white">
+                  <span>Créez votre</span>
+                  <span>compte.</span>
+                </h1>
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Connecte toi pour accéder à ton compte
                 </p>

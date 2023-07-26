@@ -3,8 +3,16 @@ import SectionContent from "../components/section-content";
 import PartnersSection from "../components/partners-section";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
+import useIntersectionObserver from "../components/useIntersectionObserver";
 
 const Home: NextPage = () => {
+  const IntersectionObserverInit = {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.5, // The percentage of the element's visibility needed to trigger the intersection
+  };
+  useIntersectionObserver(IntersectionObserverInit);
+
   return (
     <>
       <Navbar />
@@ -15,15 +23,19 @@ const Home: NextPage = () => {
           src="/home-background.jpg"
         />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw]">
-          <h1 className="w-full text-center text-[8vw] font-title-font m-0">
+          <h1 className="text-animate w-full text-center text-[8vw] font-title-font m-0">
             <span className="text-secondary">AFRICAN </span>
             <span id="outline-title">PROUD</span>
           </h1>
-          <h2 className="w-full text-center text-11xl m-0 md:text-31xl">
-            Concours organisé par DJ Moh green
+          <h2 className="viewHide w-full block text-center text-11xl m-0 md:text-31xl">
+            <span className="inline-block">
+              Concours organisé par DJ Moh green
+            </span>
           </h2>
-          <p className="w-full text-center">
-            Le premier concours 100% digital en afrique francophone
+          <p className="viewHide w-full text-center">
+            <span className="inline-block">
+              Le premier concours 100% digital en afrique francophone
+            </span>
           </p>
           <button className="button-animate relative m-auto mt-20 text-xl px-10 py-3 bg-primary font-bold rounded">
             <span>Participer</span>
@@ -36,7 +48,7 @@ const Home: NextPage = () => {
         id="numbers"
       >
         <div className="container px-5 py-10 mx-auto">
-          <div className="flex flex-wrap -m-4 text-center">
+          <div className="viewHide flex flex-wrap -m-4 text-center">
             <div className="p-4 sm:w-1/4 w-1/2">
               <h2 className="title-font font-medium sm:text-31xl text-11xl text-white">
                 430K
@@ -67,7 +79,7 @@ const Home: NextPage = () => {
       <section className="text-gray-400 bg-black body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -mx-4 -mb-10 text-center">
-            <div className="sm:w-1/2 mb-10 px-4">
+            <div className="viewHide sm:w-1/2 mb-10 px-4">
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
                   alt="content"
@@ -86,7 +98,7 @@ const Home: NextPage = () => {
                 <span>Participer</span>
               </button>
             </div>
-            <div className="sm:w-1/2 mb-10 px-4">
+            <div className="viewHide sm:w-1/2 mb-10 px-4">
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
                   alt="content"

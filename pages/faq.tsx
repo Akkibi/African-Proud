@@ -11,8 +11,8 @@ const Faq: NextPage = () => {
       <Navbar />
       <div className="bg-black min-h-full">
         <section className="text-white container py-24 mx-auto md:px-6 xl:px-24 min-h-screen">
-          <h1 className="sm:text-31xl text-11xl font-bold w-full text-center">
-            FAQ des questions fréquentes
+          <h1 className="text-animate sm:text-31xl text-11xl font-bold w-full text-center">
+            <span>FAQ des questions fréquentes</span>
           </h1>
           <p className="mb-10 w-full text-center opacity-50">
             Contactez nous si vous avez d'autres suggestions.

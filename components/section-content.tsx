@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useMemo } from "react";
 import CSS, { Property } from "csstype";
+import useIntersectionObserver from "../components/useIntersectionObserver";
 
 type SectionContentType = {
   /** Style props */
@@ -13,11 +14,17 @@ const SectionContent: NextPage<SectionContentType> = ({ frameHeight }) => {
       height: frameHeight,
     };
   }, [frameHeight]);
+  const IntersectionObserverInit = {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.5, // The percentage of the element's visibility needed to trigger the intersection
+  };
+  useIntersectionObserver(IntersectionObserverInit);
 
   return (
-    <section className="text-gray-400 bg-black body-font w-full">
+    <section className="text-gray-400 bg-black body-font w-full min-h-[80vh]">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+        <div className="viewHide lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
           <h1 className="title-font sm:text-31xl text-11xl mb-4 font-medium text-white">
             First of its kind concert <br className="hidden lg:inline-block" />
             readymade video

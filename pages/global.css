@@ -110,6 +110,51 @@ body {
   position: relative;
   transition: all 0.25s;
 }
+
+/* title animation */
+.text-animate {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.text-animate > span {
+  display: inline-block;
+  position: relative;
+  animation: textFadeIn 750ms ease-in-out forwards;
+  transform: translate(0, 100%);
+}
+
+.text-animate > span:nth-child(2) {
+  animation-delay: 150ms;
+}
+.text-animate > span:nth-child(3) {
+  animation-delay: 300ms;
+}
+.text-animate > span:nth-child(4) {
+  animation-delay: 450ms;
+}
+.text-animate > span:nth-child(5) {
+  animation-delay: 600ms;
+}
+.text-animate > span:nth-child(6) {
+  animation-delay: 750ms;
+}
+.text-animate > span:nth-child(7) {
+  animation-delay: 900ms;
+}
+
+@keyframes textFadeIn {
+  0% {
+    transform: translateY(100%) rotate(5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 #backdrop-grayscale {
   backdrop-filter: grayscale(100%);
 }
@@ -142,4 +187,49 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
+}
+
+.viewHide {
+  position: relative;
+  overflow: hidden;
+}
+.viewHide > * {
+  position: relative;
+  opacity: -1;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  transition: all 0.4s ease-in-out;
+}
+
+.show * {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.viewHide *:nth-child(2) {
+  transition-delay: 150ms;
+}
+.viewHide *:nth-child(3) {
+  transition-delay: 300ms;
+}
+.viewHide *:nth-child(4) {
+  transition-delay: 450ms;
+}
+.viewHide *:nth-child(5) {
+  transition-delay: 600ms;
+}
+.viewHide *:nth-child(6) {
+  transition-delay: 750ms;
+}
+.viewHide *:nth-child(7) {
+  transition-delay: 900ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -10,8 +10,8 @@ const Contact: NextPage = () => {
       <section className="text-gray bg-black body-font relative min-h-screen">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-12">
-            <h1 className="sm:text-3xl text-31xl font-medium title-font mb-4 text-white">
-              Contactez nous
+            <h1 className="text-animate sm:text-3xl text-31xl font-medium title-font mb-4 text-white">
+              <span>Contactez</span> <span>nous</span>
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Une question, un problème?

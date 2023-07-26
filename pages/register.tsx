@@ -77,19 +77,11 @@ const Register: NextPage = () => {
           </div>
           <div className="flex items-center lg:w-1/2 w-full bg-black p-8 px-12 min-h-screen">
             <div className="w-full">
-              <h1 className="text-11xl font-semibold tracking-wider text-gray-800 capitalize text-white">
-                Créez votre compte.
+              <h1 className="text-animate text-11xl sm:text-31xl font-semibold tracking-wider text-gray-800 capitalize text-white">
+                <span>Créez votre compte.</span>
               </h1>
-
-              <p className="mt-4 text-gray-500 text-gray-400">
-                Préparons tout ensemble pour que vous puissiez commencer avec un
-                compte.
-              </p>
-
               <div className="mt-6">
-                <h1 className="text-gray-500">
-                  Selectionnez le type de compte
-                </h1>
+                <h2>Selectionnez le type de compte</h2>
 
                 <div className="mt-3 md:flex md:items-center md:-mx-2">
                   <button

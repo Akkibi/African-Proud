@@ -1,10 +1,18 @@
 import type { NextPage } from "next";
 
+import useIntersectionObserver from "../components/useIntersectionObserver";
+
 const PartnersSection: NextPage = () => {
+  const IntersectionObserverInit = {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.5, // The percentage of the element's visibility needed to trigger the intersection
+  };
+  useIntersectionObserver(IntersectionObserverInit);
   return (
     <section className="bg-black border-t border-tertiary border-solid">
       <div className="container mx-auto flex mt-10 px-5 items-center justify-center flex-col">
-        <div className="text-center lg:w-2/3 w-full">
+        <div className="viewHide text-center lg:w-2/3 w-full">
           <h1 className="title-font sm:text-31xl text-11xl mb-4 font-medium text-white">
             Ce projet à été propulsé par ses partenaires
           </h1>

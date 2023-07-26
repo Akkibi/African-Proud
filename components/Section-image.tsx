@@ -26,8 +26,8 @@ const SectionImage: NextPage<SectionImageType> = ({
     <section className="text-gray-400 bg-black body-font w-full min-h-screen border-t border-solid border-tertiary">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col gap-5 items-center min-h-screen">
         <div className="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="title-font sm:text-31xl text-11xl mb-4 font-medium text-white">
-            {mainTitle}
+          <h1 className="text-animate title-font sm:text-31xl text-11xl mb-4 font-medium text-white">
+            <span>{mainTitle}</span>
           </h1>
           <p className="mb-8 text-gray">
             {text1}
