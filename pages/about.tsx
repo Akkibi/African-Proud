@@ -8,22 +8,80 @@ const About: NextPage = () => {
   return (
     <>
       <Navbar />
-      <SectionImage
-        mainTitle="Projet African Proud"
-        text1="Tumeric truffaut hexagon try-hard chambray.Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray. Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray."
-        text2="Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray. Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag."
-        button1=""
-        button2=""
-        image=""
-        lienIframe="https://www.youtube.com/embed/MLpWrANjFbI"
-      />
+      <section className="text-gray-400 bg-black body-font w-full min-h-screen border-t border-solid border-tertiary">
+        <div className="container mx-auto flex px-5 py-24 flex-col gap-5 items-center min-h-screen">
+          <h1 className="sm:text-31xl text-11xl w-full text-center text-white">
+            A propos
+          </h1>
+          <div className="lg:flex-grow w-full flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center">
+            <h2 className="text-animate title-font text-xl sm:text-11xl mb-4 font-medium text-white">
+              <span>Projet African Proud</span>
+            </h2>
+            <p className="mb-8 text-gray">
+              Le projet African Proud, fondé par Moh Green, voit le jour en
+              2019, à l’occasion de la Coupe d’Afrique des Nations de football
+              (CAN).
+              <br />
+              <br />
+              Poussé par l’envie de mettre l’Afrique entière à l’honneur, unie
+              par le sport et le fair-play face au football, il décide de
+              rassembler sur une même musique 10 artistes africains venus de
+              pays différents et plus de 40 célébrités apparaissant dans le
+              clip. Sa vision panafricaniste lui a permis de réaliser ce son
+              fédérateur, qui deviendra par ailleurs le générique officiel de la
+              CAN, diffusé sur BeIN Sports.
+              <br />
+            </p>
+            <div className=" w-full aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/V7kypRDQ1-Q"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <p className="mb-8 text-gray">
+              <br />
+              Mais Moh Green ne va pas s’arrêter là; il renouvèle l’expérience à
+              l’occasion de la CAN 2023 en Côte d’Ivoire (décalée en janvier
+              2024), en sortant son projet “African Proud 2”, toujours dans une
+              même optique de rassemblement et d’ouverture à l’autre. Une seule
+              Afrique fière et unifiée ; des Africains solidaires et ouverts à
+              l’autre ; voilà le message de Moh Green. Que ce soit dans le sport
+              ou dans la musique, l’Afrique regorge de talents. Néanmoins, le
+              continent reste très limité en termes de structures et
+              d’accompagnement.
+              <br />
+              <br />
+              L’artiste compte accompagner cette sortie d’un jeu concours de
+              musique et de danse, ouvert à de nombreux pays d’Afrique, innovant
+              et inclusif : le African Proud Contest. Le concours, 100% digital,
+              aura pour but de découvrir de jeunes talents africains, et de
+              diffuser leur art à l’international. Nous considérons en effet que
+              l’Afrique dispose de nombreuses richesses artistiques encore
+              inexploitées ; nous avons à cœur de montrer au monde les nombreux
+              talents dont regorgent l’Afrique.
+              <br />
+              <br />
+              Une tournée dans plus de 15 pays africains aura lieu avec des
+              formations, des conférences des concerts mais aussi des matches de
+              gala dans le but de célébrer l’Afrique autour de deux univers liés
+              : la musique et le sport.
+            </p>
+          </div>
+        </div>
+      </section>
       <SectionImage
         mainTitle="Dj Moh green"
         text1="Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray."
         text2=""
         button1="Voir plus"
         button2="voir plus"
-        image="https://dummyimage.com/1920x1080/1d594e/ffffff.jpg&text=16/9+image+"
+        image="https://www.pmnevent.fr/wp-content/uploads/2023/04/dj-moh-green_pmn_event-1-edited-1-scaled.webp"
         lienIframe=""
       />
       <section className="bg-black text-gray body-font">
@@ -50,9 +108,9 @@ const About: NextPage = () => {
             </p>
             <span className="inline-block h-1 w-10 rounded bg-secondary mt-8 mb-6"></span>
             <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
-              HOLDEN CAULFIELD
+              DJ MOH GREEN
             </h2>
-            <p className="text-gray-500">Senior Product Designer</p>
+            <p className="text-gray-500">Digital creator, producer</p>
           </div>
         </div>
       </section>

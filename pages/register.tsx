@@ -8,19 +8,33 @@ const Register: NextPage = () => {
   const [genre, setGenre] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>();
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [phoneNumberCountry, setPhoneNumberCountry] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [incorrectPassword, setIncorrectPassword] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log({
+      genre,
+      username,
+      email,
+      phoneNumber,
+      phoneNumberCountry,
+      password,
+    });
+    if (password !== confirmPassword) {
+      setIncorrectPassword(true);
+      return;
+    }
     try {
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           genre,
           username,
@@ -53,7 +67,7 @@ const Register: NextPage = () => {
                   className="w-[80vw] lg:w-[40vw] aspect-video rounded"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/NpEaa2P7qZI"
+                  // src="https://www.youtube.com/embed/NpEaa2P7qZI"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -67,7 +81,7 @@ const Register: NextPage = () => {
                   className="w-[80vw] lg:w-[40vw] aspect-video rounded"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/eEzD-Y97ges"
+                  // src="https://www.youtube.com/embed/eEzD-Y97ges"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -133,13 +147,21 @@ const Register: NextPage = () => {
               </div>
               <form
                 onSubmit={handleSubmit}
+                method="post"
+                action="/api/register"
                 className={` grid-cols-1 gap-6 mt-8 md:grid-cols-2 ${
                   showForm == "public" ? "grid" : "hidden"
                 }`}
               >
                 <div>
                   <label className="block mb-2 text-sm text-gray">Genre</label>
-                  <fieldset className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray">
+                  <fieldset
+                    name={genre}
+                    onChange={(e) =>
+                      setGenre((e.target as HTMLInputElement).value)
+                    }
+                    className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray"
+                  >
                     <div className="px-[0.2vw] w-1/3 flex bg-light-gray border-lighter-gray bg-opacity-40">
                       <input
                         type="radio"
@@ -192,6 +214,10 @@ const Register: NextPage = () => {
                   <label className="block mb-2 text-sm text-gray">Pseudo</label>
                   <input
                     type="text"
+                    name={username}
+                    onChange={(e) =>
+                      setUsername((e.target as HTMLInputElement).value)
+                    }
                     placeholder="Exemple Akkibi"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
@@ -206,7 +232,7 @@ const Register: NextPage = () => {
                       className="block w-1/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                       aria-required="true"
                       aria-invalid="false"
-                      name="menu-759"
+                      name="phoneNumberCountry"
                     >
                       <option value="">+XX</option>
                       <option value="" disabled>
@@ -237,6 +263,10 @@ const Register: NextPage = () => {
                     <input
                       type="tel"
                       placeholder="XX XX XX XX XX"
+                      name={phoneNumber}
+                      onChange={(e) =>
+                        setPhoneNumber((e.target as HTMLInputElement).value)
+                      }
                       className="block w-2/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                       required
                     />
@@ -247,8 +277,11 @@ const Register: NextPage = () => {
                     Adresse E-mail
                   </label>
                   <input
-                    type="emailPublic"
-                    name="emailPublic"
+                    type="email"
+                    name={email}
+                    onChange={(e) =>
+                      setEmail((e.target as HTMLInputElement).value)
+                    }
                     id="emailPublic"
                     placeholder="example@example.com"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
@@ -261,6 +294,10 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="password"
+                    name={password}
+                    onChange={(e) =>
+                      setPassword((e.target as HTMLInputElement).value)
+                    }
                     placeholder="Entrez votre mot de passe"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
@@ -272,12 +309,16 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="password"
+                    name={confirmPassword}
+                    onChange={(e) =>
+                      setConfirmPassword((e.target as HTMLInputElement).value)
+                    }
                     placeholder="Confirmez votre mot de passe"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
                   />
                 </div>
-                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
+                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black transition-colors duration-300 transform bg-secondary rounded  focus:bg-primary  focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50">
                   <span className="inline-flex items-center">
                     Créer un compte
                     <svg
@@ -294,6 +335,11 @@ const Register: NextPage = () => {
                     </svg>
                   </span>
                 </button>
+                {incorrectPassword && (
+                  <p className="text-red-500 text-sm">
+                    Les mot de passe ne correspondent pas
+                  </p>
+                )}
               </form>
               <form
                 className={` grid-cols-1 gap-6 mt-8 md:grid-cols-2 ${
@@ -302,7 +348,10 @@ const Register: NextPage = () => {
               >
                 <div>
                   <label className="block mb-2 text-sm text-gray">Genre</label>
-                  <fieldset className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray">
+                  <fieldset
+                    name="genre"
+                    className=" select-none	w-full flex flex-wrap list-none leading-7 p-0 rounded overflow-hidden border-solid border border-lighter-gray"
+                  >
                     <div className="px-[0.2vw] w-1/3 flex bg-light-gray border-lighter-gray bg-opacity-40">
                       <input
                         type="radio"
@@ -355,7 +404,6 @@ const Register: NextPage = () => {
                   <label className="block mb-2 text-sm text-gray">Prénom</label>
                   <input
                     type="text"
-                    placeholder="John"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded bg-  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
                   />
@@ -367,6 +415,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="text"
+                    name="username"
                     placeholder="Snow"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
@@ -382,7 +431,7 @@ const Register: NextPage = () => {
                       className="block w-1/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                       aria-required="true"
                       aria-invalid="false"
-                      name="menu-759"
+                      name="phoneNumberCountry"
                     >
                       <option value="">+XX</option>
                       <option value="" disabled>
@@ -413,6 +462,7 @@ const Register: NextPage = () => {
                     <input
                       type="tel"
                       placeholder="XX XX XX XX XX"
+                      name="phoneNumber"
                       className="block w-2/3 px-5 py-3 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                       required
                     />
@@ -426,7 +476,7 @@ const Register: NextPage = () => {
                   <input
                     type="email"
                     name="email"
-                    id="email"
+                    id="emailArtist"
                     placeholder="example@example.com"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded   focus:ring focus:bg-black focus:ring-secondary focus:border-secondary focus:outline-none focus:ring-opacity-40"
                     required
@@ -497,6 +547,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Entrez votre mot de passe"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
@@ -509,12 +560,13 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Confirmez votre mot de passe"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 bg-light-gray border-lighter-gray bg-opacity-40 border-solid border text-white rounded  focus:border-secondary  focus:ring-secondary focus:outline-none focus:ring focus:bg-black focus:ring-opacity-40"
                     required
                   />
                 </div>
-                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black capitalize transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:bg-black focus:ring-secondary focus:ring-opacity-50">
+                <button className="button-animate font-bold w-full px-10 py-3 text-sm tracking-wide text-black capitalize transition-colors duration-300 transform bg-secondary rounded  focus:outline-none focus:ring focus:ring-secondary focus:bg-primary focus:ring-opacity-50">
                   <span className="inline-flex items-center">
                     Créer un compte
                     <svg

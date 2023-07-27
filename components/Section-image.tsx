@@ -8,7 +8,9 @@ type SectionImageType = {
   text1?: string;
   text2?: string;
   button1?: string;
+  lienButton1?: string;
   button2?: string;
+  lienButton2?: string;
   image?: string;
   lienIframe?: string;
 };
@@ -18,7 +20,9 @@ const SectionImage: NextPage<SectionImageType> = ({
   text1,
   text2,
   button1,
+  lienButton1,
   button2,
+  lienButton2,
   image,
   lienIframe,
 }) => {
@@ -26,9 +30,9 @@ const SectionImage: NextPage<SectionImageType> = ({
     <section className="text-gray-400 bg-black body-font w-full min-h-screen border-t border-solid border-tertiary">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col gap-5 items-center min-h-screen">
         <div className="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="text-animate title-font sm:text-31xl text-11xl mb-4 font-medium text-white">
+          <h2 className="text-animate title-font sm:text-11xl text-xl mb-4 font-medium text-white">
             <span>{mainTitle}</span>
-          </h1>
+          </h2>
           <p className="mb-8 text-gray">
             {text1}
             <br />
@@ -37,13 +41,24 @@ const SectionImage: NextPage<SectionImageType> = ({
           </p>
           <div className="flex justify-center">
             {button1 != "" && (
-              <button className="button-animate text-xl inline-flex bg-primary font-bold border-0 py-3 px-10 focus:outline-none rounded">
+              <button
+                onClick={() =>
+                  (window.location.href = "https://www.djmohgreen.com/")
+                }
+                className="button-animate text-xl inline-flex bg-primary font-bold border-0 py-3 px-10 focus:outline-none rounded"
+              >
                 <span>{button1}</span>
               </button>
             )}
 
             {button2 != "" && (
-              <button className="button-animate text-xl ml-4 inline-flex bg-tertiary text-white border-0 py-3 px-10 font-bold focus:outline-none rounded">
+              <button
+                onClick={() =>
+                  (window.location.href =
+                    "https://www.instagram.com/djmohgreen/")
+                }
+                className="button-animate text-xl ml-4 inline-flex bg-tertiary text-white border-0 py-3 px-10 font-bold focus:outline-none rounded"
+              >
                 <span>{button2}</span>
               </button>
             )}
