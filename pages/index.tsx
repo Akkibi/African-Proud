@@ -94,9 +94,11 @@ const Home: NextPage = () => {
                 Votez pour vos artistes préférés et suivez le concours et les
                 évènements.
               </p>
-              <button className="button-animate flex mx-auto mt-6 text-black bg-primary text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
-                <span>Participer</span>
-              </button>
+              <div className="p-2">
+                <button className="button-animate flex mx-auto mt-6 text-black bg-primary text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
+                  <span>Participer</span>
+                </button>
+              </div>
             </div>
             <div className="viewHide sm:w-1/2 mb-10 px-4">
               <div className="rounded-lg h-64 overflow-hidden">
@@ -113,9 +115,11 @@ const Home: NextPage = () => {
                 Participez au concours et tentez de remporter [ le grand prix ]
                 ainsi qu'un voyage et une production tous frais payés.
               </p>
-              <button className="button-animate flex mx-auto mt-6 bg-tertiary text-white text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
-                <span>Participer</span>
-              </button>
+              <div className="p-2">
+                <button className="button-animate flex mx-auto mt-6 bg-tertiary text-white text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
+                  <span>Participer</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

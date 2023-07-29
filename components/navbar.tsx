@@ -37,9 +37,12 @@ const Navbar: NextPage = () => {
   return (
     <>
       <div
-        className={`fixed flex flex-col bg-[rgba(0,0,0,0.85)] w-full rounded-br-[100%] duration-300 h-screen ease-out z-40 top-0 lg:hidden ${
+        className={`fixed flex flex-col bg-[rgba(0,0,0,0.85)] w-full rounded-br-[100%] h-screen ease-out z-40 top-0 lg:hidden ${
           burgerOpen === false ? "-translate-y-full " : "!rounded-none"
         }`}
+        style={{
+          transition: "all .8s cubic-bezier(.7, 0, .2, 1)",
+        }}
       >
         <div className=" h-16 w-full bg-black"></div>
         <a

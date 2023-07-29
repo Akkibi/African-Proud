@@ -61,7 +61,7 @@ body {
 }
 
 .sticky-nav {
-  animation: sticky-nav 300ms;
+  animation: sticky-nav 300ms cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 @keyframes sticky-nav {
@@ -89,7 +89,7 @@ body {
   width: 0;
   height: 100%;
   background: #fff;
-  transition: all 0.25s;
+  transition: all 0.25s cubic-bezier(0.7, 0, 0.2, 1);
 }
 .button-animate:hover {
   color: #000;
@@ -108,7 +108,7 @@ body {
   display: block;
   text-align: center;
   position: relative;
-  transition: all 0.25s;
+  transition: all 0.25s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 /* title animation */
@@ -198,30 +198,30 @@ input[type="radio"]:checked::before {
   opacity: -1;
   -webkit-transform: translateY(100%);
   transform: translateY(100%);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
-.show * {
+.show > * {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
 
-.viewHide *:nth-child(2) {
+.viewHide > *:nth-child(2) {
   transition-delay: 150ms;
 }
-.viewHide *:nth-child(3) {
+.viewHide > *:nth-child(3) {
   transition-delay: 300ms;
 }
-.viewHide *:nth-child(4) {
+.viewHide > *:nth-child(4) {
   transition-delay: 450ms;
 }
-.viewHide *:nth-child(5) {
+.viewHide > *:nth-child(5) {
   transition-delay: 600ms;
 }
-.viewHide *:nth-child(6) {
+.viewHide > *:nth-child(6) {
   transition-delay: 750ms;
 }
-.viewHide *:nth-child(7) {
+.viewHide > *:nth-child(7) {
   transition-delay: 900ms;
 }
 

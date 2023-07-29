@@ -24,7 +24,7 @@ const PartnersSection: NextPage = () => {
             la crise du chômage des jeunes grâce à des formations ludiques et
             pertinentes.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center p-2">
             <button className="button-animate font-bold inline-flex text-black border-0 py-3 px-10 focus:outline-none bg-primary rounded text-xl">
               <span>Participer</span>
             </button>
