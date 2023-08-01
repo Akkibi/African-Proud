@@ -1,16 +1,16 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
 const Agenda: NextPage = () => {
   return (
     <>
       <Navbar />
       <div className="h-full min-h-screen w-full">agenda</div>
-      <Footer />{" "}
+      <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Agenda;
+export default Agenda

@@ -1,25 +1,25 @@
-import type { NextPage } from "next";
-import { useEffect } from "react";
+import type { NextPage } from 'next'
+import { useEffect } from 'react'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
 const Concours: NextPage = () => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       if (true) {
-        window.location.pathname = "/sign-in";
+        window.location.pathname = '/sign-in'
       }
     }
-  }, []);
+  }, [])
 
   return (
     <>
       <Navbar />
       <div className="h-full min-h-screen w-full">concours</div>
-      <Footer />{" "}
+      <Footer />{' '}
     </>
-  );
-};
+  )
+}
 
-export default Concours;
+export default Concours

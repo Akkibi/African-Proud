@@ -1,16 +1,16 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
 const Footer: NextPage = () => {
   return (
     <>
-      <footer className="text-gray border-t border-solid border-tertiary bg-black body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap md:text-left text-center order-first">
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+      <footer className="body-font border-t border-solid border-tertiary bg-black text-gray">
+        <div className="container mx-auto px-5 py-24">
+          <div className="order-first flex flex-wrap text-center md:text-left">
+            <div className="w-full px-4 md:w-1/2 lg:w-1/4">
+              <h2 className="title-font text-sm mb-3 font-medium tracking-widest text-white">
                 PARTICIPER
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="mb-10 list-none">
                 <li>
                   <a className="text-gray hover:text-white" href="./contact">
                     Contact
@@ -29,11 +29,11 @@ const Footer: NextPage = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+            <div className="w-full px-4 md:w-1/2 lg:w-1/4">
+              <h2 className="title-font text-sm mb-3 font-medium tracking-widest text-white">
                 EXPLORER
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="mb-10 list-none">
                 <li>
                   <a className="text-gray hover:text-white" href="./about">
                     Qui sommes nous?
@@ -52,25 +52,25 @@ const Footer: NextPage = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+            <div className="w-full px-4 md:w-1/2 lg:w-1/4">
+              <h2 className="title-font text-sm mb-3 font-medium tracking-widest text-white">
                 CONTACTER
               </h2>
-              <nav className="list-none mb-10">
+              <nav className="mb-10 list-none">
                 <li>All Stars Project Inc.543 West</li>
                 <li>42nd Street</li>
                 <li>New York, NY 10036</li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
+            <div className="w-full px-4 md:w-1/2 lg:w-1/4">
+              <h2 className="title-font text-sm mb-3 font-medium tracking-widest text-white">
                 NEWSLETTER
               </h2>
-              <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
-                <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
+              <div className="xl:flex-nowrap flex flex-wrap items-end justify-center md:flex-nowrap md:justify-start lg:flex-wrap">
+                <div className="xl:mr-4 relative mr-2 w-40 sm:mr-4 sm:w-auto lg:mr-0">
                   <label
                     htmlFor="footer-field"
-                    className="leading-7 text-sm text-gray"
+                    className="text-sm leading-7 text-gray"
                   >
                     Email
                   </label>
@@ -78,24 +78,24 @@ const Footer: NextPage = () => {
                     type="text"
                     id="footer-field"
                     name="footer-field"
-                    className="w-full bg-light-gray rounded text-white border border-solid bg-opacity-40 border-gray-700 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="border-gray-700 text-base text-gray-100 w-full rounded border border-solid bg-light-gray bg-opacity-40 px-3 py-1 leading-8 text-white outline-none transition-colors duration-200 ease-in-out focus:border-yellow-500 focus:bg-transparent focus:ring-2 focus:ring-yellow-900"
                   />
                 </div>
-                <button className=" button-animate lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-black bg-primary border-0 py-3 px-10 focus:outline-none font-bold rounded">
+                <button className=" button-animate xl:mt-0 inline-flex flex-shrink-0 rounded border-0 bg-primary px-10 py-3 font-bold text-black focus:outline-none lg:mt-2">
                   <span>S'abonner</span>
                 </button>
               </div>
-              <p className="text-gray text-sm mt-2 md:text-left text-center">
+              <p className="text-sm mt-2 text-center text-gray md:text-left">
                 Abonnez vous à la newsletter
-                <br className="lg:block hidden" />
+                <br className="hidden lg:block" />
                 pour ne rien manquer.
               </p>
             </div>
           </div>
         </div>
         <div className="bg-dark-gray bg-opacity-75">
-          <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
+          <div className="container mx-auto flex flex-col items-center px-5 py-6 sm:flex-row">
+            <a className="title-font flex items-center justify-center font-medium text-white md:justify-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -103,34 +103,34 @@ const Footer: NextPage = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-10 h-10 text-black p-2 bg-primary rounded-full"
+                className="h-10 w-10 rounded-full bg-primary p-2 text-black"
                 viewBox="0 0 24 24"
               >
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
               </svg>
-              <span className="ml-3 text-xl font-title-font">
+              <span className="ml-3 font-title-font text-xl">
                 African Proud
               </span>
             </a>
-            <p className="text-sm text-gray mt-4 sm:ml-6">
+            <p className="text-sm mt-4 text-gray sm:ml-6">
               © 2020 African Proud —
               <a
                 href="https://www.djmohgreen.com/"
-                className="text-gray ml-1"
+                className="ml-1 text-gray"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 @mohgreen
               </a>
             </p>
-            <span className="inline-flex sm:ml-auto mt-4 justify-center sm:justify-start">
+            <span className="mt-4 inline-flex justify-center sm:ml-auto sm:justify-start">
               <a className="text-gray">
                 <svg
                   fill="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   viewBox="0 0 24 24"
                 >
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
@@ -142,7 +142,7 @@ const Footer: NextPage = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   viewBox="0 0 24 24"
                 >
                   <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
@@ -155,7 +155,7 @@ const Footer: NextPage = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   viewBox="0 0 24 24"
                 >
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -169,7 +169,7 @@ const Footer: NextPage = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="0"
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -184,7 +184,7 @@ const Footer: NextPage = () => {
         </div>
       </footer>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

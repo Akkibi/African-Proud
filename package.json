@@ -13,14 +13,11 @@
     "react-google-recaptcha": "^3.1.0",
     "react-router-dom": "^6.2.1"
   },
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ]
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export -o build/",
+    "start": "next start",
+    "lint": "next lint"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
@@ -32,15 +29,22 @@
     "postcss": "^8.4.16",
     "prettier": "^3.0.0",
     "prisma": "^5.0.0",
-    "tailwindcss": "^3.1.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
+    "tailwindcss": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.3"
   },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export -o build/",
-    "start": "next start",
-    "lint": "next lint"
+
+
+
+  
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }

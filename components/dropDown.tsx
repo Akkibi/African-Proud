@@ -1,34 +1,34 @@
-import type { NextPage } from "next";
-import { useEffect } from "react";
-import { useState } from "react";
+import type { NextPage } from 'next'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 type DropdownType = {
   /** Style props */
-  mainTitle?: string;
-  mainText?: string;
-};
+  mainTitle?: string
+  mainText?: string
+}
 
 const DropDown: NextPage<DropdownType> = ({ mainTitle, mainText }) => {
-  const [show, setShow] = useState(false);
-  useEffect(() => {}, []);
+  const [show, setShow] = useState(false)
+  useEffect(() => {}, [])
 
   return (
     <div className="">
       <div>
         <button
           onClick={() => {
-            setShow(!show);
+            setShow(!show)
           }}
-          className="relative flex w-full items-center rounded-none border-b border-solid border-fourth bg-black py-4 px-5 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none"
+          className="relative flex w-full items-center rounded-none border-b border-solid border-fourth bg-black px-5 py-4 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none"
         >
-          <h2 className="text-xl sm:text-11xl text-white text-left font-bold w-full ">
-            {mainTitle == "" || mainTitle == undefined
-              ? "Quelle est la question que tu te pose?"
+          <h2 className="w-full text-left text-xl font-bold text-white sm:text-11xl ">
+            {mainTitle == '' || mainTitle == undefined
+              ? 'Quelle est la question que tu te pose?'
               : mainTitle}
           </h2>
           <span
             className={`${
-              show ? "rotate-[-180deg] fill-primary" : "rotate-0 fill-white"
+              show ? 'rotate-[-180deg] fill-primary' : 'rotate-0 fill-white'
             } ml-auto h-5 w-5 shrink-0 transition-transform duration-200 ease-in-out motion-reduce:transition-none`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -41,18 +41,18 @@ const DropDown: NextPage<DropdownType> = ({ mainTitle, mainText }) => {
         </button>
       </div>
       <div
-        className={`duration-200 overflow-clip ease-in-out ${
-          show ? "max-h-[50vh]" : "max-h-0"
+        className={`overflow-clip duration-200 ease-in-out ${
+          show ? 'max-h-[50vh]' : 'max-h-0'
         }`}
       >
-        <p className="text-gray px-5">
-          {mainText === "" || mainText == undefined
-            ? "Je me pose plein de questions Lorem ipsum dolor sit amet Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident."
+        <p className="px-5 text-gray">
+          {mainText === '' || mainText == undefined
+            ? 'Je me pose plein de questions Lorem ipsum dolor sit amet Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.'
             : mainText}
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DropDown;
+export default DropDown

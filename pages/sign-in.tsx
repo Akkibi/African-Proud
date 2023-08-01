@@ -1,29 +1,29 @@
-import type { NextPage } from "next";
-import { useRef } from "react";
+import type { NextPage } from 'next'
+import { useRef } from 'react'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
 const SignIn: NextPage = () => {
-  const username = useRef("");
-  const password = useRef("");
+  const username = useRef('')
+  const password = useRef('')
 
-  const onSubmit = () => {};
+  const onSubmit = () => {}
 
   return (
     <>
       <Navbar />
 
-      <div className="bg-black dark:bg-gray-900 text-white">
-        <div className="flex justify-center h-screen">
-          <div className="hidden bg-cover lg:block lg:w-1/2 border-r border-tertiary border-solid">
-            <div className="flex items-center justify-center h-full w-full px-20 bg-[url(../public/sponsor.jpg)]">
+      <div className="dark:bg-gray-900 bg-black text-white">
+        <div className="flex h-screen justify-center">
+          <div className="hidden border-r border-solid border-tertiary bg-cover lg:block lg:w-1/2">
+            <div className="flex h-full w-full items-center justify-center bg-[url(../public/sponsor.jpg)] px-20">
               <div>
-                <h2 className="text-11xl text-center font-bold sm:text-3xl">
+                <h2 className="sm:text-3xl text-center text-11xl font-bold">
                   Explication concours
                 </h2>
                 <iframe
-                  className=" w-[40vw] aspect-video rounded"
+                  className=" aspect-video w-[40vw] rounded"
                   width="100%"
                   height="100%"
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -35,10 +35,10 @@ const SignIn: NextPage = () => {
             </div>
           </div>
 
-          <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-1/3">
+          <div className="mx-auto flex w-full max-w-md items-center px-6 lg:w-1/3">
             <div className="flex-1">
               <div className="text-center">
-                <div className="flex justify-center mx-auto">
+                <div className="mx-auto flex justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -46,17 +46,17 @@ const SignIn: NextPage = () => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    className="w-auto h-12 sm:h-14 text-black p-2 bg-primary rounded-full"
+                    className="h-12 w-auto rounded-full bg-primary p-2 text-black sm:h-14"
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                   </svg>
                 </div>
-                <h1 className="text-animate text-11xl sm:text-31xl font-semibold tracking-wider text-gray-800 capitalize text-white">
+                <h1 className="text-animate text-gray-800 text-11xl font-semibold capitalize tracking-wider text-white sm:text-31xl">
                   <span>Créez votre</span>
                   <span>compte.</span>
                 </h1>
-                <p className="mt-3 text-gray-500 dark:text-gray-300">
+                <p className="text-gray-500 dark:text-gray-300 mt-3">
                   Connecte toi pour accéder à ton compte
                 </p>
               </div>
@@ -66,33 +66,33 @@ const SignIn: NextPage = () => {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block mb-2 text-sm text-gray"
+                      className="text-sm mb-2 block text-gray"
                     >
                       Adresse E-mail
                     </label>
                     <input
                       onChange={(e) => {
-                        username.current = e.target.value;
+                        username.current = e.target.value
                       }}
                       type="email"
                       name="email"
                       id="email"
                       placeholder="example@example.com"
-                      className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border-lighter-gray border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="text-base text-gray-100  w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-3 py-1 leading-8 text-white outline-none transition-colors duration-200 ease-in-out focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900"
                     />
                   </div>
 
                   <div className="mt-6">
-                    <div className="flex justify-between mb-2">
+                    <div className="mb-2 flex justify-between">
                       <label
                         htmlFor="password"
-                        className="leading-8 text-sm text-gray"
+                        className="text-sm leading-8 text-gray"
                       >
                         Mot de passe
                       </label>
                       <a
                         href="#"
-                        className="text-sm text-gray focus:text-primary hover:text-blue-500 hover:underline"
+                        className="text-sm text-gray hover:text-blue-500 hover:underline focus:text-primary"
                       >
                         Mot de passe oublié?
                       </a>
@@ -100,7 +100,7 @@ const SignIn: NextPage = () => {
 
                     <input
                       onChange={(e) => {
-                        password.current = e.target.value;
+                        password.current = e.target.value
                       }}
                       type="password"
                       name="password"
@@ -108,25 +108,25 @@ const SignIn: NextPage = () => {
                       minLength={8}
                       required={true}
                       placeholder=""
-                      className="w-full rounded text-11xl bg-light-gray text-white bg-opacity-40 border-solid border border-lighter-gray focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="text-base text-gray-100 w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-3 py-1 text-11xl leading-8 text-white outline-none transition-colors duration-200 ease-in-out focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900"
                     />
                   </div>
 
                   <div className="mt-6">
                     <button
                       onClick={onSubmit}
-                      className=" button-animate w-full px-4 py-3 tracking-wide text-black font-bold transition-colors duration-300 transform bg-secondary rounded"
+                      className=" button-animate w-full transform rounded bg-secondary px-4 py-3 font-bold tracking-wide text-black transition-colors duration-300"
                     >
                       <span>Se connecter</span>
                     </button>
                   </div>
                 </form>
 
-                <p className="mt-6 text-sm text-center text-gray-400">
+                <p className="text-sm text-gray-400 mt-6 text-center">
                   Pas encore de compte?
                   <a
                     href="#"
-                    className="text-primary focus:outline-none focus:underline hover:underline"
+                    className="text-primary hover:underline focus:underline focus:outline-none"
                   >
                     S'inscrire
                   </a>
@@ -139,7 +139,7 @@ const SignIn: NextPage = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

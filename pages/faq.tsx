@@ -1,17 +1,17 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
-import DropDown from "../components/dropDown";
+import DropDown from '../components/dropDown'
 
 const Faq: NextPage = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-black min-h-full">
-        <section className="text-white container py-24 mx-auto md:px-6 xl:px-24 min-h-screen">
-          <h1 className="text-animate sm:text-31xl text-11xl font-bold w-full text-center">
+      <div className="min-h-full bg-black">
+        <section className="xl:px-24 container mx-auto min-h-screen py-24 text-white md:px-6">
+          <h1 className="text-animate w-full text-center text-11xl font-bold sm:text-31xl">
             <span>FAQ des questions fréquentes</span>
           </h1>
           <p className="mb-10 w-full text-center opacity-50">
@@ -34,7 +34,7 @@ const Faq: NextPage = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Faq;
+export default Faq

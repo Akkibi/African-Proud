@@ -1,25 +1,25 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
 const Contact: NextPage = () => {
   return (
     <>
       <Navbar />
-      <section className="text-gray bg-black body-font relative min-h-screen">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-12">
-            <h1 className="text-animate sm:text-3xl text-31xl font-medium title-font mb-4 text-white">
+      <section className="body-font relative min-h-screen bg-black text-gray">
+        <div className="container mx-auto px-5 py-24">
+          <div className="mb-12 flex w-full flex-col text-center">
+            <h1 className="text-animate sm:text-3xl title-font mb-4 text-31xl font-medium text-white">
               <span>Contactez</span> <span>nous</span>
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+            <p className="text-base mx-auto leading-relaxed lg:w-2/3">
               Une question, un problème?
             </p>
           </div>
-          <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <fieldset className="w-full flex flex-wrap bg-light-gray bg-opacity-40 list-none py-1 px-0 rounded overflow-hidden border-solid border outline-none border-lighter-gray">
-              <div className="pl-2 w-1/3 flex">
+          <div className="mx-auto md:w-2/3 lg:w-1/2">
+            <fieldset className="flex w-full list-none flex-wrap overflow-hidden rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-0 py-1 outline-none">
+              <div className="flex w-1/3 pl-2">
                 <input
                   type="radio"
                   id="Public"
@@ -29,12 +29,12 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Public"
-                  className="pl-2 text-center w-full text-white leading-8"
+                  className="w-full pl-2 text-center leading-8 text-white"
                 >
                   Public
                 </label>
               </div>
-              <div className="pl-2 w-1/3 border-solid border-x flex">
+              <div className="flex w-1/3 border-x border-solid pl-2">
                 <input
                   type="radio"
                   id="Artistes"
@@ -44,12 +44,12 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Artistes"
-                  className="pl-2 w-full text-center text-white leading-8"
+                  className="w-full pl-2 text-center leading-8 text-white"
                 >
                   Artistes
                 </label>
               </div>
-              <div className="pl-2 w-1/3 flex">
+              <div className="flex w-1/3 pl-2">
                 <input
                   type="radio"
                   id="Partenariat"
@@ -59,32 +59,32 @@ const Contact: NextPage = () => {
                 />
                 <label
                   htmlFor="Partenariat"
-                  className="pl-2 w-full text-center text-white leading-8"
+                  className="w-full pl-2 text-center leading-8 text-white"
                 >
                   Partenariat
                 </label>
               </div>
             </fieldset>
 
-            <div className="flex flex-wrap -m-2">
-              <div className="p-2 w-1/2">
+            <div className="-m-2 flex flex-wrap">
+              <div className="w-1/2 p-2">
                 <div className="relative">
-                  <label htmlFor="name" className="leading-8 text-sm text-gray">
+                  <label htmlFor="name" className="text-sm leading-8 text-gray">
                     Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full rounded  bg-light-gray text-white bg-opacity-40 border-solid border-lighter-gray border focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="text-base text-gray-100  w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-3 py-1 leading-8 text-white outline-none transition-colors duration-200 ease-in-out focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900"
                   />
                 </div>
               </div>
-              <div className="p-2 w-1/2">
+              <div className="w-1/2 p-2">
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className="leading-8 text-sm text-gray-400"
+                    className="text-sm text-gray-400 leading-8"
                   >
                     Email
                   </label>
@@ -92,15 +92,15 @@ const Contact: NextPage = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border border-lighter-gray focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
+                    className="text-base text-gray-100 w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-3 py-1 leading-8 text-white outline-none transition-colors duration-200 ease-in-out focus:border-yellow-500 focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 "
                   />
                 </div>
               </div>
-              <div className="p-2 w-full">
+              <div className="w-full p-2">
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className="leading-8 text-sm text-gray-400"
+                    className="text-sm text-gray-400 leading-8"
                   >
                     Message
                   </label>
@@ -108,18 +108,18 @@ const Contact: NextPage = () => {
                     id="message"
                     name="message"
                     maxLength={1000}
-                    className="w-full bg-light-gray text-white bg-opacity-40 rounded border-solid border border-lighter-gray focus:border-secondary focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 leading-6 transition-colors duration-200 ease-in-out overflow-x-hidden resize-y"
+                    className="text-base text-gray-100 h-32 w-full resize-y overflow-x-hidden rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-3 py-1 leading-6 text-white outline-none transition-colors duration-200 ease-in-out focus:border-secondary focus:bg-dark-gray focus:ring-2 focus:ring-yellow-900"
                   ></textarea>
                 </div>
               </div>
-              <div className="p-2 w-full">
-                <button className="flex mx-auto text-black bg-primary border-0 py-3 px-10 focus:outline-none hover:bg-secondary rounded text-lg">
+              <div className="w-full p-2">
+                <button className="text-lg mx-auto flex rounded border-0 bg-primary px-10 py-3 text-black hover:bg-secondary focus:outline-none">
                   Envoyer
                 </button>
               </div>
-              <div className="p-2 w-full pt-8 mt-8 border-t border-solid border-light-gray text-center">
+              <div className="mt-8 w-full border-t border-solid border-light-gray p-2 pt-8 text-center">
                 <a className="text-yellow-400">example@email.com</a>
-                <p className="leading-normal my-5">
+                <p className="my-5 leading-normal">
                   49 Smith St.
                   <br />
                   Saint Cloud, MN 56301
@@ -131,32 +131,32 @@ const Contact: NextPage = () => {
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       viewBox="0 0 24 24"
                     >
                       <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                   </a>
-                  <a className="ml-4 text-gray-500">
+                  <a className="text-gray-500 ml-4">
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       viewBox="0 0 24 24"
                     >
                       <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
                     </svg>
                   </a>
-                  <a className="ml-4 text-gray-500">
+                  <a className="text-gray-500 ml-4">
                     <svg
                       fill="none"
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       viewBox="0 0 24 24"
                     >
                       <rect
@@ -170,13 +170,13 @@ const Contact: NextPage = () => {
                       <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                   </a>
-                  <a className="ml-4 text-gray-500">
+                  <a className="text-gray-500 ml-4">
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       viewBox="0 0 24 24"
                     >
                       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
@@ -190,7 +190,7 @@ const Contact: NextPage = () => {
       </section>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

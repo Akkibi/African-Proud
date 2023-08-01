@@ -1,19 +1,19 @@
-import type { NextPage } from "next";
-import { useMemo } from "react";
-import CSS, { Property } from "csstype";
+import type { NextPage } from 'next'
+import { useMemo } from 'react'
+import CSS, { Property } from 'csstype'
 
 type SectionImageType = {
   /** Style props */
-  mainTitle?: string;
-  text1?: string;
-  text2?: string;
-  button1?: string;
-  lienButton1?: string;
-  button2?: string;
-  lienButton2?: string;
-  image?: string;
-  lienIframe?: string;
-};
+  mainTitle?: string
+  text1?: string
+  text2?: string
+  button1?: string
+  lienButton1?: string
+  button2?: string
+  lienButton2?: string
+  image?: string
+  lienIframe?: string
+}
 
 const SectionImage: NextPage<SectionImageType> = ({
   mainTitle,
@@ -27,10 +27,10 @@ const SectionImage: NextPage<SectionImageType> = ({
   lienIframe,
 }) => {
   return (
-    <section className="text-gray-400 bg-black body-font w-full min-h-screen border-t border-solid border-tertiary">
-      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col gap-5 items-center min-h-screen">
-        <div className="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h2 className="text-animate title-font sm:text-11xl text-xl mb-4 font-medium text-white">
+    <section className="text-gray-400 body-font min-h-screen w-full border-t border-solid border-tertiary bg-black">
+      <div className="container mx-auto flex min-h-screen flex-col items-center gap-5 px-5 py-24 md:flex-row">
+        <div className="mb-16 flex flex-col items-center text-center md:mb-0 md:w-1/2 md:items-start md:text-left lg:flex-grow">
+          <h2 className="text-animate title-font mb-4 text-xl font-medium text-white sm:text-11xl">
             <span>{mainTitle}</span>
           </h2>
           <p className="mb-8 text-gray">
@@ -40,39 +40,39 @@ const SectionImage: NextPage<SectionImageType> = ({
             {text2}
           </p>
           <div className="flex justify-center">
-            {button1 != "" && (
+            {button1 != '' && (
               <button
                 onClick={() =>
-                  (window.location.href = "https://www.djmohgreen.com/")
+                  (window.location.href = 'https://www.djmohgreen.com/')
                 }
-                className="button-animate text-xl inline-flex bg-primary font-bold border-0 py-3 px-10 focus:outline-none rounded"
+                className="button-animate inline-flex rounded border-0 bg-primary px-10 py-3 text-xl font-bold focus:outline-none"
               >
                 <span>{button1}</span>
               </button>
             )}
 
-            {button2 != "" && (
+            {button2 != '' && (
               <button
                 onClick={() =>
                   (window.location.href =
-                    "https://www.instagram.com/djmohgreen/")
+                    'https://www.instagram.com/djmohgreen/')
                 }
-                className="button-animate text-xl ml-4 inline-flex bg-tertiary text-white border-0 py-3 px-10 font-bold focus:outline-none rounded"
+                className="button-animate ml-4 inline-flex rounded border-0 bg-tertiary px-10 py-3 text-xl font-bold text-white focus:outline-none"
               >
                 <span>{button2}</span>
               </button>
             )}
           </div>
         </div>
-        <div className="lg:max-w-2xl lg:w-full md:w-1/2 w-5/6 aspect-video">
-          {image != "" && (
+        <div className="aspect-video w-5/6 md:w-1/2 lg:w-full lg:max-w-2xl">
+          {image != '' && (
             <img
-              className="object-cover object-center rounded h-full w-full"
+              className="h-full w-full rounded object-cover object-center"
               alt="hero"
               src={image}
             />
           )}
-          {lienIframe != "" && (
+          {lienIframe != '' && (
             <iframe
               width="100%"
               height="100%"
@@ -86,7 +86,7 @@ const SectionImage: NextPage<SectionImageType> = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SectionImage;
+export default SectionImage

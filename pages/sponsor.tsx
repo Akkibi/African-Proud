@@ -1,49 +1,49 @@
-import type { NextPage } from "next";
-import PartnersSection from "../components/partners-section";
-import { useState, useEffect } from "react";
+import type { NextPage } from 'next'
+import PartnersSection from '../components/partners-section'
+import { useState, useEffect } from 'react'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
 
 const Sponsor: NextPage = () => {
-  const [gray, setGray] = useState(true);
+  const [gray, setGray] = useState(true)
 
   useEffect(() => {
-    const participate = document.querySelector("#sponsor-participate");
+    const participate = document.querySelector('#sponsor-participate')
 
     if (participate) {
-      participate.addEventListener("mouseover", () => {
-        setGray(false);
-        console.log("enter");
-      });
+      participate.addEventListener('mouseover', () => {
+        setGray(false)
+        console.log('enter')
+      })
 
-      participate.addEventListener("mouseout", () => {
-        setGray(true);
-        console.log("leave");
-      });
+      participate.addEventListener('mouseout', () => {
+        setGray(true)
+        console.log('leave')
+      })
     }
-  }, []);
+  }, [])
   return (
     <>
       <Navbar />
-      <div className="w-full h-16 bg-black"></div>
+      <div className="h-16 w-full bg-black"></div>
       <PartnersSection />
-      <div className="relative border-t border-solid text-white border-tertiary bg-black min-h-[80vh] flex flex-col items-center justify-center gap-lg">
+      <div className="gap-lg relative flex min-h-[80vh] flex-col items-center justify-center border-t border-solid border-tertiary bg-black text-white">
         <img
           src="./sponsor.jpg"
           alt=""
           className="absolute h-full w-full  object-cover opacity-75"
         />
         <div
-          className={`h-full w-full duration-500 absolute ${
-            !gray && "opacity-0"
+          className={`absolute h-full w-full duration-500 ${
+            !gray && 'opacity-0'
           }`}
           id="backdrop-grayscale"
         ></div>
-        <div className="self-stretch relative text-center text-31xl">
+        <div className="relative self-stretch text-center text-31xl">
           Devenir partenaire
         </div>
-        <div className="self-stretch relative text-gray text-center">
+        <div className="relative self-stretch text-center text-gray">
           <p className="m-0">
             En devenant partenaire de Trace Academia, vous pourrez nous
             accompagner
@@ -51,7 +51,7 @@ const Sponsor: NextPage = () => {
           </p>
         </div>
         <button
-          className="button-animate relative mx-auto mt-20 text-xl px-10 py-3 bg-primary font-bold rou nded"
+          className="button-animate rou nded relative mx-auto mt-20 bg-primary px-10 py-3 text-xl font-bold"
           id="sponsor-participate"
         >
           <span className="inline-flex items-center">
@@ -62,7 +62,7 @@ const Sponsor: NextPage = () => {
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              className="w-4 h-4 ml-1"
+              className="ml-1 h-4 w-4"
               viewBox="0 0 24 24"
             >
               <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -72,7 +72,7 @@ const Sponsor: NextPage = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Sponsor;
+export default Sponsor

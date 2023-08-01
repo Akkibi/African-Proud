@@ -1,33 +1,33 @@
-import type { NextPage } from "next";
-import SectionContent from "../components/section-content";
-import PartnersSection from "../components/partners-section";
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
-import useIntersectionObserver from "../components/useIntersectionObserver";
+import type { NextPage } from 'next'
+import SectionContent from '../components/section-content'
+import PartnersSection from '../components/partners-section'
+import Footer from '../components/footer'
+import Navbar from '../components/navbar'
+import useIntersectionObserver from '../components/useIntersectionObserver'
 
 const Home: NextPage = () => {
   const IntersectionObserverInit = {
     root: null, // Use the viewport as the root
-    rootMargin: "0px",
+    rootMargin: '0px',
     threshold: 0.5, // The percentage of the element's visibility needed to trigger the intersection
-  };
-  useIntersectionObserver(IntersectionObserverInit);
+  }
+  useIntersectionObserver(IntersectionObserverInit)
 
   return (
     <>
       <Navbar />
-      <div className="relative text-white w-full min-h-screen">
+      <div className="relative min-h-screen w-full text-white">
         <img
-          className="absolute w-full h-full object-cover"
+          className="absolute h-full w-full object-cover"
           alt=""
           src="/home-background.jpg"
         />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw]">
-          <h1 className="text-animate w-full text-center text-[8vw] font-title-font m-0">
+        <div className="absolute left-1/2 top-1/2 w-[90vw] -translate-x-1/2 -translate-y-1/2">
+          <h1 className="text-animate m-0 w-full text-center font-title-font text-[8vw]">
             <span className="text-secondary">AFRICAN </span>
             <span id="outline-title">PROUD</span>
           </h1>
-          <h2 className="viewHide w-full block text-center text-11xl m-0 md:text-31xl">
+          <h2 className="viewHide m-0 block w-full text-center text-11xl md:text-31xl">
             <span className="inline-block">
               Concours organisé par DJ Moh green
             </span>
@@ -37,38 +37,38 @@ const Home: NextPage = () => {
               Le premier concours 100% digital en afrique francophone
             </span>
           </p>
-          <button className="button-animate relative m-auto mt-20 text-xl px-10 py-3 bg-primary font-bold rounded">
+          <button className="button-animate relative m-auto mt-20 rounded bg-primary px-10 py-3 text-xl font-bold">
             <span>Participer</span>
           </button>
         </div>
       </div>
       <SectionContent frameHeight="100vh" />
       <section
-        className="text-gray-400 bg-black w-full body-font border-y-2 border-solid border-fourth"
+        className="text-gray-400 body-font w-full border-y-2 border-solid border-fourth bg-black"
         id="numbers"
       >
-        <div className="container px-5 py-10 mx-auto">
-          <div className="viewHide flex flex-wrap -m-4 text-center">
-            <div className="p-4 sm:w-1/4 w-1/2">
-              <h2 className="title-font font-medium sm:text-31xl text-11xl text-white">
+        <div className="container mx-auto px-5 py-10">
+          <div className="viewHide -m-4 flex flex-wrap text-center">
+            <div className="w-1/2 p-4 sm:w-1/4">
+              <h2 className="title-font text-11xl font-medium text-white sm:text-31xl">
                 430K
               </h2>
               <p className="text-white">Abonnés instagram</p>
             </div>
-            <div className="p-4 sm:w-1/4 w-1/2">
-              <h2 className="title-font font-medium sm:text-31xl text-11xl text-white">
+            <div className="w-1/2 p-4 sm:w-1/4">
+              <h2 className="title-font text-11xl font-medium text-white sm:text-31xl">
                 1K
               </h2>
               <p className="text-white">Clubs dans le monde</p>
             </div>
-            <div className="p-4 sm:w-1/4 w-1/2">
-              <h2 className="title-font font-medium sm:text-31xl text-11xl text-white">
+            <div className="w-1/2 p-4 sm:w-1/4">
+              <h2 className="title-font text-11xl font-medium text-white sm:text-31xl">
                 250M
               </h2>
               <p className="text-white">Vue total</p>
             </div>
-            <div className="p-4 sm:w-1/4 w-1/2">
-              <h2 className="title-font font-medium sm:text-31xl text-11xl text-white">
+            <div className="w-1/2 p-4 sm:w-1/4">
+              <h2 className="title-font text-11xl font-medium text-white sm:text-31xl">
                 20
               </h2>
               <p className="text-white">Années de carrière</p>
@@ -76,47 +76,47 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className="text-gray-400 bg-black body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -mx-4 -mb-10 text-center">
-            <div className="viewHide sm:w-1/2 mb-10 px-4">
-              <div className="rounded-lg h-64 overflow-hidden">
+      <section className="text-gray-400 body-font bg-black">
+        <div className="container mx-auto px-5 py-24">
+          <div className="-mx-4 -mb-10 flex flex-wrap text-center">
+            <div className="viewHide mb-10 px-4 sm:w-1/2">
+              <div className="h-64 overflow-hidden rounded-lg">
                 <img
                   alt="content"
-                  className="object-cover object-center h-full w-full"
+                  className="h-full w-full object-cover object-center"
                   src="./concert.jpg"
                 />
               </div>
-              <h2 className="font-title-font text-31xl font-medium text-white mt-6 mb-3">
+              <h2 className="mb-3 mt-6 font-title-font text-31xl font-medium text-white">
                 Public
               </h2>
-              <p className="text-gray text-base">
+              <p className="text-base text-gray">
                 Votez pour vos artistes préférés et suivez le concours et les
                 évènements.
               </p>
               <div className="p-2">
-                <button className="button-animate flex mx-auto mt-6 text-black bg-primary text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
+                <button className="button-animate mx-auto mt-6 flex rounded border-0 bg-primary px-10 py-3 text-xl font-bold text-black focus:outline-none">
                   <span>Participer</span>
                 </button>
               </div>
             </div>
-            <div className="viewHide sm:w-1/2 mb-10 px-4">
-              <div className="rounded-lg h-64 overflow-hidden">
+            <div className="viewHide mb-10 px-4 sm:w-1/2">
+              <div className="h-64 overflow-hidden rounded-lg">
                 <img
                   alt="content"
-                  className="object-cover object-center h-full w-full"
+                  className="h-full w-full object-cover object-center"
                   src="./concert-dj.jpg"
                 />
               </div>
-              <h2 className="font-title-font text-31xl font-medium text-white mt-6 mb-3">
+              <h2 className="mb-3 mt-6 font-title-font text-31xl font-medium text-white">
                 Artiste
               </h2>
-              <p className="text-gray text-base">
+              <p className="text-base text-gray">
                 Participez au concours et tentez de remporter [ le grand prix ]
                 ainsi qu'un voyage et une production tous frais payés.
               </p>
               <div className="p-2">
-                <button className="button-animate flex mx-auto mt-6 bg-tertiary text-white text-xl font-bold border-0 py-3 px-10 focus:outline-none rounded">
+                <button className="button-animate mx-auto mt-6 flex rounded border-0 bg-tertiary px-10 py-3 text-xl font-bold text-white focus:outline-none">
                   <span>Participer</span>
                 </button>
               </div>
@@ -127,7 +127,7 @@ const Home: NextPage = () => {
       <PartnersSection />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
