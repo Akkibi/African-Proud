@@ -13,7 +13,7 @@ const Register: NextPage = () => {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [incorrectPassword, setIncorrectPassword] = useState<boolean>(false)
-
+  const emailVerified: boolean = false
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log({
@@ -23,6 +23,7 @@ const Register: NextPage = () => {
       phoneNumber,
       phoneNumberCountry,
       password,
+      emailVerified,
     })
     if (password !== confirmPassword) {
       setIncorrectPassword(true)
@@ -42,6 +43,7 @@ const Register: NextPage = () => {
           phoneNumber,
           phoneNumberCountry,
           password,
+          emailVerified,
         }),
       })
 

@@ -85,7 +85,7 @@ const About: NextPage = () => {
         image="https://www.pmnevent.fr/wp-content/uploads/2023/04/dj-moh-green_pmn_event-1-edited-1-scaled.webp"
         lienIframe=""
       />
-      <section className="body-font bg-black text-gray">
+      <section className=" body-font border-t border-solid border-tertiary bg-black text-gray">
         <div className="container mx-auto px-5 py-24">
           <div className="xl:w-1/2 mx-auto w-full text-center lg:w-3/4">
             <svg

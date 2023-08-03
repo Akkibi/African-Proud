@@ -53,8 +53,7 @@ const SignIn: NextPage = () => {
                   </svg>
                 </div>
                 <h1 className="text-animate text-gray-800 text-11xl font-semibold capitalize tracking-wider text-white sm:text-31xl">
-                  <span>Créez votre</span>
-                  <span>compte.</span>
+                  <span>Connectez</span> <span>vous.</span>
                 </h1>
                 <p className="text-gray-500 dark:text-gray-300 mt-3">
                   Connecte toi pour accéder à ton compte

@@ -27,7 +27,7 @@ const SectionImage: NextPage<SectionImageType> = ({
   lienIframe,
 }) => {
   return (
-    <section className="text-gray-400 body-font min-h-screen w-full border-t border-solid border-tertiary bg-black">
+    <section className="text-gray-400 body-font min-h-screen w-full border-t border-solid border-tertiary">
       <div className="container mx-auto flex min-h-screen flex-col items-center gap-5 px-5 py-24 md:flex-row">
         <div className="mb-16 flex flex-col items-center text-center md:mb-0 md:w-1/2 md:items-start md:text-left lg:flex-grow">
           <h2 className="text-animate title-font mb-4 text-xl font-medium text-white sm:text-11xl">
