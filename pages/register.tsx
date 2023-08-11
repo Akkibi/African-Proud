@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-
+import ReCAPTCHA from 'react-google-recaptcha'
 import Footer from '../components/footer'
 import Navbar from '../components/navbar'
 
@@ -13,7 +13,13 @@ const Register: NextPage = () => {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [incorrectPassword, setIncorrectPassword] = useState<boolean>(false)
+  const [capcha, setCapcha] = useState<boolean>(false)
   const emailVerified: boolean = false
+
+  function recaptchaChange(value: boolean) {
+    setCapcha(value)
+    console.log(value)
+  }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log({
@@ -69,7 +75,7 @@ const Register: NextPage = () => {
                   className="aspect-video w-[80vw] rounded lg:w-[40vw]"
                   width="100%"
                   height="100%"
-                  // src="https://www.youtube.com/embed/NpEaa2P7qZI"
+                  src="https://www.youtube.com/embed/NpEaa2P7qZI"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -83,7 +89,7 @@ const Register: NextPage = () => {
                   className="aspect-video w-[80vw] rounded lg:w-[40vw]"
                   width="100%"
                   height="100%"
-                  // src="https://www.youtube.com/embed/eEzD-Y97ges"
+                  src="https://www.youtube.com/embed/eEzD-Y97ges"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -568,7 +574,11 @@ const Register: NextPage = () => {
                     required
                   />
                 </div>
-                <button className="button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold capitalize tracking-wide text-black transition-colors duration-300  focus:bg-primary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50">
+                <button
+                  className={`button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold capitalize tracking-wide text-black transition-colors duration-300  focus:bg-primary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50 ${
+                    !capcha ? 'hidden' : 'block'
+                  }`}
+                >
                   <span className="inline-flex items-center">
                     Créer un compte
                     <svg
@@ -585,6 +595,10 @@ const Register: NextPage = () => {
                     </svg>
                   </span>
                 </button>
+                <ReCAPTCHA
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  onchange={recaptchaChange}
+                />
               </form>
             </div>
           </div>

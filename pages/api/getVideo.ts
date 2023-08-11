@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     try {
-      const data = await prisma.music.findMany()
+      const data = await prisma.video.findMany()
       const dataFiltred = data.filter((data) => data.published === true)
       return res.status(200).json(dataFiltred)
     } catch (error) {

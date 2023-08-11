@@ -54,14 +54,14 @@ const Navbar: NextPage = () => {
         </a>
         <a
           className="flex cursor-pointer flex-row items-center border-b-2 border-solid border-tertiary py-5 no-underline duration-150 hover:translate-x-5 hover:font-bold hover:tracking-widest"
-          href="./video"
+          href="./videoPage"
         >
           <span className="h-5  w-7 -translate-x-10 rounded bg-primary"></span>
           <span className=" ml-5 w-full text-11xl text-white">Videos</span>
         </a>
         <a
           className="flex cursor-pointer flex-row items-center border-b-2 border-solid border-tertiary py-5 no-underline duration-150 hover:translate-x-5 hover:font-bold hover:tracking-widest"
-          href="./music"
+          href="./musicPage"
         >
           <span className="h-5  w-7 -translate-x-10 rounded bg-primary"></span>
           <span className=" ml-5 w-full text-11xl text-white">Musique</span>
@@ -145,7 +145,7 @@ const Navbar: NextPage = () => {
             </a>
             <a
               className=" hover:text-gray-400 ml-4 cursor-pointer text-white no-underline"
-              href="./video"
+              href="./videoPage"
             >
               Vidéo
             </a>
