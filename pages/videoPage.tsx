@@ -1,23 +1,33 @@
+"use client"
 import type { NextPage } from 'next'
-import type { Video } from '@prisma/client'
-
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
-import DateFormatter from '../components/dateFormatter'
-
+import Footer from './components/footer'
+import Navbar from './components/navbar'
+import DateFormatter from './components/dateFormatter'
 import { useState, useEffect } from 'react'
 import { time } from 'console'
+import Video from "../models/videoModel";
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 let date: Date = new Date()
 
 const VideoPage: NextPage = () => {
-  const [data, setData] = useState<Video[] | null>([])
+  const [data, setData] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null)
+  const router = useRouter()
+  const { data: session, status } = useSession();
+
+   useEffect(() => {
+ 
+    if (!session) {
+      router.push('/sign-in'); 
+    }
+  }, [session, router]);
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/getVideo')
+    fetch('/api/dashboard/getVideo')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
@@ -88,19 +98,6 @@ const VideoPage: NextPage = () => {
                           </svg>
                         </a>
                         <span className="text-sm ml-auto mr-3 inline-flex items-center border-r-2 border-gray py-1 pr-3 leading-none text-gray md:ml-0 lg:ml-auto">
-                          <svg
-                            className="mr-1 h-4 w-4"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                          </svg>
-                          1.2K
                         </span>
                       </div>
                     </div>
@@ -113,7 +110,7 @@ const VideoPage: NextPage = () => {
       {data.map((data) => (
         <div
           key={data.id}
-          id={data.id.toString()}
+          id={data.id}
           className={`scroll fixed left-0 top-0 z-50 h-full w-full overflow-y-scroll bg-[rgba(0,0,0,0.75)] text-white ${
             selectedVideoId === data.id ? 'block' : 'hidden'
           }`}
@@ -140,11 +137,7 @@ const VideoPage: NextPage = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src={
-                  selectedVideoId === data.id
-                    ? 'https://www.youtube.com/embed/' + data.link.toString()
-                    : 'https://www.youtube.com/embed/'
-                }
+      
                 title="YouTube video player"
                 allowFullScreen="allowfullscreen"
                 mozallowfullscreen="mozallowfullscreen"

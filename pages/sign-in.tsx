@@ -1,14 +1,67 @@
-import type { NextPage } from 'next'
-import { useRef } from 'react'
-
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
+"use client"
+import type { NextPage } from 'next';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
+import Footer from './components/footer';
+import Navbar from './components/navbar';
+import { signIn, useSession } from 'next-auth/react'
 
 const SignIn: NextPage = () => {
-  const username = useRef('')
-  const password = useRef('')
+  const router = useRouter();
+  const { data: session } = useSession();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const [resendEmailLoading, setResendEmailLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showResendButton, setShowResendButton] = useState(false);
+  const [errorOccurred, setErrorOccurred] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = () => {}
+  const onLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await signIn("credentials", {
+      ...user,
+      redirect: false,
+    })
+      .then((callback) => {
+        if (callback?.error) {
+          setErrorMessage(callback.error);
+  
+          // Check if the error message is "Veuillez vérifier votre email"
+          if (callback.error === "Veuillez vérifier votre email.") {
+            setShowResendButton(true);
+          } else {
+            setShowResendButton(false);
+          }
+        } else if (callback?.ok && callback?.error) {
+          toast.success("Connexion réussie.");
+          router.push(`/`);
+        }
+      });
+  };
+
+
+  const onResendVerificationEmail = async () => {
+    try {
+      setResendEmailLoading(true);
+
+      const email = user.email;
+  
+      await axios.post('/api/users/resendVerification', { email });
+      toast.success('Email de vérification renvoyé avec succès');
+    } catch (error: any) {
+      setErrorOccurred(true); // Set errorOccurred to true
+      // Gérer les erreurs d'envoi de l'e-mail de vérification
+      toast.error('Erreur lors de l\'envoi de l\'email de vérification');
+    } finally {
+      setResendEmailLoading(false);
+    }
+  };
 
   return (
     <>
@@ -43,9 +96,9 @@ const SignIn: NextPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     className="h-12 w-auto rounded-full bg-primary p-2 text-black sm:h-14"
                     viewBox="0 0 24 24"
                   >
@@ -70,9 +123,8 @@ const SignIn: NextPage = () => {
                       Adresse E-mail
                     </label>
                     <input
-                      onChange={(e) => {
-                        username.current = e.target.value
-                      }}
+                      value={user.email}
+                      onChange={(e) => setUser({ ...user, email: e.target.value })}
                       type="email"
                       name="email"
                       id="email"
@@ -90,7 +142,7 @@ const SignIn: NextPage = () => {
                         Mot de passe
                       </label>
                       <a
-                        href="#"
+                        onClick={() => router.push(`/forgotPassword`)}
                         className="text-sm text-gray hover:text-blue-500 hover:underline focus:text-primary"
                       >
                         Mot de passe oublié?
@@ -98,9 +150,8 @@ const SignIn: NextPage = () => {
                     </div>
 
                     <input
-                      onChange={(e) => {
-                        password.current = e.target.value
-                      }}
+                      value={user.password}
+                      onChange={(e) => setUser({ ...user, password: e.target.value })}
                       type="password"
                       name="password"
                       id="password"
@@ -113,19 +164,32 @@ const SignIn: NextPage = () => {
 
                   <div className="mt-6">
                     <button
-                      onClick={onSubmit}
-                      className=" button-animate w-full transform rounded bg-secondary px-4 py-3 font-bold tracking-wide text-black transition-colors duration-300"
+                      onClick={onLogin}
+                      className="button-animate w-full transform rounded bg-secondary px-4 py-3 font-bold tracking-wide text-black transition-colors duration-300"
                     >
-                      <span>Se connecter</span>
+                      {loading ? "Processing" : "Se Connecter"}
                     </button>
                   </div>
                 </form>
-
+                {errorMessage && (
+                  <div className="mt-4 text-red-500 text-center">{errorMessage}</div>
+                )}
+                {showResendButton && (
+                  <div className="mt-6">
+                    <button
+                      onClick={onResendVerificationEmail}
+                      className={`w-full transform rounded bg-secondary px-4 py-3 font-bold tracking-wide text-black transition-colors duration-300 ${resendEmailLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={resendEmailLoading}
+                    >
+                      {resendEmailLoading ? 'Envoi en cours' : "Renvoyer l'email de vérification"}
+                    </button>
+                  </div>
+                )}
                 <p className="text-sm text-gray-400 mt-6 text-center">
                   Pas encore de compte?
                   <a
-                    href="#"
-                    className="text-primary hover:underline focus:underline focus:outline-none"
+                    onClick={() => router.push(`/register`)}
+                    className="text-primary cursor-pointer hover:underline focus:underline focus:outline-none"
                   >
                     S'inscrire
                   </a>
@@ -141,4 +205,4 @@ const SignIn: NextPage = () => {
   )
 }
 
-export default SignIn
+export default SignIn;

@@ -6,63 +6,46 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Admin {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
-  password String @unique
-}
-
-model Public {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  genre          String
-  username       String
-  phoneNumber    String @unique
-  phoneNumberCountry String
-  email          String @unique
-  emailVerified DateTime
-  password       String
-  // accounts      Account[]
-  // sessions      Session[]
-}
-
-model Artist {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  genre          String
-  firstName      String
-  lastName       String
-  username       String
-  age            Int
-  city           String
-  country        String
-  phoneNumber    String @unique
-  phoneNumberCountry String
-  email          String? @unique
-  password       String
-  // accounts      Account[]
-  // sessions      Session[]
-}
-
-model Music {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  title     String
-  content   String?
-  link      String
-  published Boolean @default(false)
+model User {
+  id                   Int       @id @default(autoincrement())
+  genre                String
+  firstName            String
+  username             String    @unique
+  age                  Int
+  city                 String
+  country              String
+  phoneNumber          String
+  phoneNumberCountry   String
+  email                String    @unique
+  password             String
+  role                 String    @default("normal")
+  isVerified           Boolean   @default(false)
+  userType             String   
+  contrat              Bytes?   
+  forgotPasswordToken  String
+  forgotPasswordTokenExpiry DateTime?
+  verifyToken          String
+  verifyTokenExpiry    DateTime?
 }
 
 model Video {
-  id        Int     @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id        Int       @id @default(autoincrement())
   title     String
-  content   String?
+  content   String
   link      String
-  published Boolean @default(false)
+  published Boolean   @default(false)
+  createdAt DateTime  @default(now())
+}
+
+model Music {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String
+  link      String
+  published Boolean   @default(false)
+  createdAt DateTime  @default(now())
 }

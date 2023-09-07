@@ -1,9 +1,9 @@
+"use client"
 import type { NextPage } from 'next'
-import PartnersSection from '../components/partners-section'
+import PartnersSection from './components/partners-section'
 import { useState, useEffect } from 'react'
-
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
+import Footer from './components/footer'
+import Navbar from './components/navbar'
 
 const Sponsor: NextPage = () => {
   const [gray, setGray] = useState(true)

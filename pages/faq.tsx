@@ -1,9 +1,8 @@
+"use client"
 import type { NextPage } from 'next'
-
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
-
-import DropDown from '../components/dropDown'
+import Footer from './components/footer'
+import Navbar from './components/navbar'
+import DropDown from './components/dropDown'
 
 const Faq: NextPage = () => {
   return (

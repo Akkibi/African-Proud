@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import './global.css'
+import { SessionProvider } from 'next-auth/react'
+import { Toaster } from 'react-hot-toast'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,8 +19,19 @@ function MyApp({ Component, pageProps }: AppProps) {
           async
           defer
         ></script>
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="/logo.png" // Assurez-vous que le chemin est correct
+        />
       </Head>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+      <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+        />
+        <Component {...pageProps} />
+      </SessionProvider>
     </React.Fragment>
   )
 }

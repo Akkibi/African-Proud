@@ -1,23 +1,31 @@
+"use client"
 import type { NextPage } from 'next'
-import type { Music } from '@prisma/client'
-
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
-import DateFormatter from '../components/dateFormatter'
-
+import Footer from './components/footer'
+import Navbar from './components/navbar'
+import DateFormatter from './components/dateFormatter'
 import { useState, useEffect } from 'react'
-import { time } from 'console'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 let date: Date = new Date()
 
 const MusicPage: NextPage = () => {
-  const [data, setData] = useState<Music[]>([])
+  const [data, setData] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [selectedMusicId, setSelectedMusicId] = useState<number | null>(null)
+  const router = useRouter()
+  const { data: session, status } = useSession();
+
+   useEffect(() => {
+ 
+    if (!session) {
+      router.push('/sign-in'); 
+    }
+  }, [session, router]);
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/getMusic')
+    fetch('/api/dashboard/getMusic')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
@@ -95,7 +103,7 @@ const MusicPage: NextPage = () => {
       {data.map((data) => (
         <div
           key={data.id}
-          id={data.id.toString()}
+          id={data.id}
           className={`scroll fixed left-0 top-0 z-50 h-full w-full overflow-y-scroll bg-[rgba(0,0,0,0.75)] text-white ${
             selectedMusicId === data.id ? 'block' : 'hidden'
           }`}

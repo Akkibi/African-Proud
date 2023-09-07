@@ -1,17 +1,29 @@
+"use client"
 import type { NextPage } from 'next'
 import { LinkHTMLAttributes, useEffect } from 'react'
 import image2 from '../public/2.png'
 import image4 from '../public/4.png'
 import image6 from '../public/6.png'
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
-import { URL } from 'url'
+import Footer from './components/footer'
+import Navbar from './components/navbar'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 const prod1 = image2.src
 const prod2 = image4.src
 const prod3 = image6.src
 
 const Concours: NextPage = () => {
+  const router = useRouter()
+  const { data: session, status } = useSession();
+
+   useEffect(() => {
+ 
+    if (!session) {
+      router.push('/sign-in'); 
+    }
+  }, [session, router]);
+
   const downloadFileAtURL = (url: string) => {
     fetch(url).then((response) => {
       response.blob().then((blob) => {
@@ -41,7 +53,7 @@ const Concours: NextPage = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/UwsrzCVZAb8"
+                src="https://www.youtube.com/embed/QV9M6zj-pPE"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen

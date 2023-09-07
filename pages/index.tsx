@@ -1,11 +1,14 @@
+"use client"
 import type { NextPage } from 'next'
-import SectionContent from '../components/section-content'
-import PartnersSection from '../components/partners-section'
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
-import useIntersectionObserver from '../components/useIntersectionObserver'
+import SectionContent from './components/section-content'
+import PartnersSection from './components/partners-section'
+import Footer from './components/footer'
+import Navbar from './components/navbar'
+import { useRouter } from 'next/router';
+import useIntersectionObserver from './components/useIntersectionObserver'
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const IntersectionObserverInit = {
     root: null, // Use the viewport as the root
     rootMargin: '0px',
@@ -29,7 +32,7 @@ const Home: NextPage = () => {
           </h1>
           <h2 className="viewHide m-0 block w-full text-center text-11xl md:text-31xl">
             <span className="inline-block">
-              Concours organisé par DJ Moh green
+              Concours organisé par DJ Moh Green
             </span>
           </h2>
           <p className="viewHide w-full text-center">
@@ -37,7 +40,9 @@ const Home: NextPage = () => {
               Le premier concours 100% digital en afrique francophone
             </span>
           </p>
-          <button className="button-animate relative m-auto mt-20 rounded bg-primary px-10 py-3 text-xl font-bold">
+          <button
+            onClick={() => router.push(`/register`)}
+           className="button-animate relative m-auto mt-20 rounded bg-primary px-10 py-3 text-xl font-bold">
             <span>Participer</span>
           </button>
         </div>
@@ -95,7 +100,9 @@ const Home: NextPage = () => {
                 évènements.
               </p>
               <div className="p-2">
-                <button className="button-animate mx-auto mt-6 flex rounded border-0 bg-primary px-10 py-3 text-xl font-bold text-black focus:outline-none">
+                <button
+                onClick={() => router.push(`/register`)} 
+                className="button-animate mx-auto mt-6 flex rounded border-0 bg-primary px-10 py-3 text-xl font-bold text-black focus:outline-none">
                   <span>Participer</span>
                 </button>
               </div>
@@ -112,11 +119,13 @@ const Home: NextPage = () => {
                 Artiste
               </h2>
               <p className="text-base text-gray">
-                Participez au concours et tentez de remporter [ le grand prix ]
-                ainsi qu'un voyage et une production tous frais payés.
+                Participez au concours et tentez de remporter <strong>10 000 euros </strong>
+                ainsi qu'une performance lors d'un grand concert.
               </p>
               <div className="p-2">
-                <button className="button-animate mx-auto mt-6 flex rounded border-0 bg-tertiary px-10 py-3 text-xl font-bold text-white focus:outline-none">
+                <button
+                onClick={() => router.push(`/register`)} 
+                className="button-animate mx-auto flex rounded border-0 bg-tertiary px-10 py-3 text-xl font-bold text-white focus:outline-none">
                   <span>Participer</span>
                 </button>
               </div>

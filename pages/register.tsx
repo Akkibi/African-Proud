@@ -1,67 +1,107 @@
-import type { NextPage } from 'next'
-import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
-import Footer from '../components/footer'
-import Navbar from '../components/navbar'
+"use client";
+import type { NextPage } from 'next';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import ReCAPTCHA from 'react-google-recaptcha';
+import Footer from './components/footer';
+import Navbar from './components/navbar';
+import toast, { Toaster } from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
 
 const Register: NextPage = () => {
-  const [genre, setGenre] = useState<string>('')
-  const [username, setUsername] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [phoneNumber, setPhoneNumber] = useState<string>('')
-  const [phoneNumberCountry, setPhoneNumberCountry] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [confirmPassword, setConfirmPassword] = useState<string>('')
-  const [incorrectPassword, setIncorrectPassword] = useState<boolean>(false)
-  const [capcha, setCapcha] = useState<boolean>(false)
-  const emailVerified: boolean = false
-
-  function recaptchaChange(value: boolean) {
-    setCapcha(value)
-    console.log(value)
-  }
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log({
-      genre,
-      username,
-      email,
-      phoneNumber,
-      phoneNumberCountry,
-      password,
-      emailVerified,
-    })
-    if (password !== confirmPassword) {
-      setIncorrectPassword(true)
-      return
+  const router = useRouter();
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [incorrectPassword, setIncorrectPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorOccurred, setErrorOccurred] = useState(false);
+  const [captcha, setCaptcha] = useState(false);
+  const { data: session, status } = useSession();
+  
+  useEffect(() => {
+ 
+    if (session) {
+      router.push('/'); 
     }
+  }, [session, router])
+
+  const [formData, setFormData] = useState({
+    userType: '', 
+    genre: '',
+    username: '',
+    email: '',
+    phoneNumber: '',
+    phoneNumberCountry: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '', 
+    age: 0, 
+    country: '', 
+    isAdmin: false,
+    city: '', 
+  });
+
+  const onSignup = async (e) => {
+    e.preventDefault();
+  
+    if (
+      !formData.genre ||
+      !formData.username ||
+      !formData.email ||
+      !formData.phoneNumber ||
+      !formData.phoneNumberCountry ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      setErrorOccurred(true);
+      toast.error('Veuillez remplir tous les champs.');
+      return;
+    }
+  
+    if (formData.password !== formData.confirmPassword) {
+      setErrorOccurred(true);
+      toast.error("Les mots de passe ne correspondent pas.");
+      return;
+    }
+  
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-
-        body: JSON.stringify({
-          genre,
-          username,
-          email,
-          phoneNumber,
-          phoneNumberCountry,
-          password,
-          emailVerified,
-        }),
-      })
-
-      const data = await response.json()
-      console.log(data)
-    } catch (error) {
-      console.error('Error registering user:', error)
+      setLoading(true);
+      const response = await axios.post("/api/users/signup", formData);
+      console.log("Signup Success", response.data);
+      router.push("/sign-in");
+    } catch (error: any) {
+      setErrorOccurred(true); // Set errorOccurred to true
+      toast.error(error.message);
+      console.log("Signup failed", error.message);
+    } finally {
+      setLoading(false);
     }
   }
-  const [showForm, setShowForm] = useState<string>('')
+
+  useEffect(() => {
+    if (formData.email.length > 0 && formData.password.length > 0 && formData.username.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [formData]);
+
+  const recaptchaChange = (value) => {
+    // Gérez le changement de ReCAPTCHA ici
+    setCaptcha(value);
+  };
+
+  const [showForm, setShowForm] = useState<string>('');
+
   return (
     <>
+      {errorOccurred && (
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+        />
+      )}
       <Navbar />
       <section className="border-lighter-gray bg-light-gray bg-opacity-40 text-white">
         <div className="justify-center lg:flex">
@@ -75,7 +115,7 @@ const Register: NextPage = () => {
                   className="aspect-video w-[80vw] rounded lg:w-[40vw]"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/NpEaa2P7qZI"
+                  src="https://www.youtube.com/embed/EUPmRCeCbPQ"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -89,7 +129,7 @@ const Register: NextPage = () => {
                   className="aspect-video w-[80vw] rounded lg:w-[40vw]"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/eEzD-Y97ges"
+                  src="https://www.youtube.com/embed/QV9M6zj-pPE"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -104,35 +144,46 @@ const Register: NextPage = () => {
               </h1>
               <div className="mt-6">
                 <h2>Selectionnez le type de compte</h2>
-
                 <div className="mt-3 md:-mx-2 md:flex md:items-center">
-                  <button
-                    className="button-animate w-full rounded bg-primary px-6 py-3 font-bold text-black focus:outline-none md:mx-2 md:w-auto"
-                    onClick={() => setShowForm('public')}
-                  >
-                    <span className="flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="mr-2 h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                      Public
-                    </span>
-                  </button>
+                <button
+                  value="public"
+                  className={`button-animate w-full rounded bg-primary px-6 py-3 font-bold text-black focus:outline-none md:mx-2 md:w-auto ${
+                    showForm === 'public' ? 'active' : ''
+                  }`}
+                  onClick={() => {
+                    setFormData({ ...formData, userType: 'public' });
+                    setShowForm('public');
+                  }}
+                >
+                  <span className="flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="mr-2 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                    Public
+                  </span>
+                </button>
 
-                  <button
-                    className="button-animate mt-4 w-full rounded border border-solid  bg-tertiary px-6 py-3 font-bold text-white focus:outline-none md:mx-2 md:mt-0  md:w-auto"
-                    onClick={() => setShowForm('artiste')}
-                  >
+                <button
+                  value="artiste"
+                  className={`button-animate mt-4 w-full rounded border border-solid bg-tertiary px-6 py-3 font-bold text-white focus:outline-none md:mx-2 md:mt-0 md:w-auto ${
+                    showForm === 'artiste' ? 'active' : ''
+                  }`}
+                  onClick={() => {
+                    setFormData({ ...formData, userType: 'artiste' });
+                    setShowForm('artiste');
+                  }}
+                >
                     <span className="mx-2 flex items-center justify-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -154,20 +205,15 @@ const Register: NextPage = () => {
                 </div>
               </div>
               <form
-                onSubmit={handleSubmit}
-                method="post"
-                action="/api/register"
                 className={` mt-8 grid-cols-1 gap-6 md:grid-cols-2 ${
                   showForm == 'public' ? 'grid' : 'hidden'
                 }`}
               >
                 <div>
                   <label className="text-sm mb-2 block text-gray">Genre</label>
-                  <fieldset
-                    name={genre}
-                    onChange={(e) =>
-                      setGenre((e.target as HTMLInputElement).value)
-                    }
+                  <fieldset                  
+                    value={formData.genre}
+                    onChange={(e) => setFormData({...formData, genre: e.target.value})}
                     className=" flex	w-full select-none list-none flex-wrap overflow-hidden rounded border border-solid border-lighter-gray p-0 leading-7"
                   >
                     <div className="flex w-1/3 border-lighter-gray bg-light-gray bg-opacity-40 px-[0.2vw]">
@@ -175,7 +221,7 @@ const Register: NextPage = () => {
                         type="radio"
                         id="malePublic"
                         name="public"
-                        value="male"
+                        value="homme"
                         required
                       />
                       <label
@@ -191,7 +237,7 @@ const Register: NextPage = () => {
                         type="radio"
                         id="femalePublic"
                         name="public"
-                        value="female"
+                        value="femme"
                         required
                       />
                       <label
@@ -206,7 +252,7 @@ const Register: NextPage = () => {
                         type="radio"
                         id="otherPublic"
                         name="public"
-                        value="other"
+                        value="autre"
                         required
                       />
                       <label
@@ -218,19 +264,20 @@ const Register: NextPage = () => {
                     </div>
                   </fieldset>
                 </div>
+
                 <div>
                   <label className="text-sm mb-2 block text-gray">Pseudo</label>
                   <input
+                    id = "username"
                     type="text"
-                    name={username}
-                    onChange={(e) =>
-                      setUsername((e.target as HTMLInputElement).value)
-                    }
+                    value={formData.username}
+                    onChange={(e) => setFormData({...formData, username: e.target.value})}
                     placeholder="Exemple Akkibi"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
                   />
                 </div>
+
                 <div>
                   <label className="text-sm mb-2 block text-gray">
                     Numéro de téléphone
@@ -240,7 +287,9 @@ const Register: NextPage = () => {
                       className="text-gray-700 block w-1/3 rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                       aria-required="true"
                       aria-invalid="false"
-                      name="phoneNumberCountry"
+                      id="phoneNumber"
+                      value={formData.phoneNumberCountry}
+                      onChange={(e) => setFormData({...formData, phoneNumberCountry: e.target.value})}
                     >
                       <option value="">+XX</option>
                       <option value="" disabled>
@@ -271,64 +320,63 @@ const Register: NextPage = () => {
                     <input
                       type="tel"
                       placeholder="XX XX XX XX XX"
-                      name={phoneNumber}
-                      onChange={(e) =>
-                        setPhoneNumber((e.target as HTMLInputElement).value)
-                      }
-                      className="text-gray-700 block w-2/3 rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
+                      id="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
+                      className="text-gray-700 block w-2/3 rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                       required
                     />
                   </div>
                 </div>
+
                 <div>
-                  <label className="text-sm mb-2 block text-gray">
-                    Adresse E-mail
-                  </label>
+                  <label className="text-sm mb-2 block text-gray-600">Adresse E-mail</label>
                   <input
                     type="email"
-                    name={email}
-                    onChange={(e) =>
-                      setEmail((e.target as HTMLInputElement).value)
-                    }
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     id="emailPublic"
                     placeholder="example@example.com"
-                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white   focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
+                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
                   />
                 </div>
+
                 <div>
-                  <label className="text-sm mb-2 block text-gray">
-                    Mot de passe
-                  </label>
+                  <label className="text-sm mb-2 block text-gray-600">Mot de passe</label>
                   <input
                     type="password"
-                    name={password}
-                    onChange={(e) =>
-                      setPassword((e.target as HTMLInputElement).value)
-                    }
+                    id="password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({...formData, password: e.target.value})}
                     placeholder="Entrez votre mot de passe"
-                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
+                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
                   />
                 </div>
+
                 <div>
-                  <label className="text-sm mb-2 block text-gray">
+                  <label className="text-sm mb-2 block text-gray-600">
                     Confirmez le mot de passe
                   </label>
                   <input
                     type="password"
-                    name={confirmPassword}
-                    onChange={(e) =>
-                      setConfirmPassword((e.target as HTMLInputElement).value)
-                    }
+                    id="confirmpassword"
+                    value={formData.confirmPassword}
+                    onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
                     placeholder="Confirmez votre mot de passe"
-                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
+                    className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
                   />
                 </div>
-                <button className="button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold tracking-wide text-black transition-colors duration-300  focus:bg-primary  focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50">
-                  <span className="inline-flex items-center">
-                    Créer un compte
+
+                <button
+                  type='submit'
+                  onClick={onSignup}
+                  className="button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold tracking-wide text-black transition-colors duration-300 focus:bg-primary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50">
+                  <span 
+                  className="inline-flex items-center">
+                    {loading ? "Processing" : "Créer un compte"}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 rtl:-scale-x-100"
@@ -343,11 +391,16 @@ const Register: NextPage = () => {
                     </svg>
                   </span>
                 </button>
+
                 {incorrectPassword && (
                   <p className="text-sm text-red-500">
-                    Les mot de passe ne correspondent pas
+                    Les mots de passe ne correspondent pas
                   </p>
                 )}
+                <ReCAPTCHA
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  onChange={recaptchaChange}
+                />
               </form>
               <form
                 className={` mt-8 grid-cols-1 gap-6 md:grid-cols-2 ${
@@ -357,7 +410,13 @@ const Register: NextPage = () => {
                 <div>
                   <label className="text-sm mb-2 block text-gray">Genre</label>
                   <fieldset
-                    name="genre"
+                    name={formData.genre}
+                    onChange={(e) =>
+                      setFormData((prevUser) => ({
+                        ...prevUser,
+                        genre: (e.target as HTMLInputElement).value,
+                      }))
+                    }
                     className=" flex	w-full select-none list-none flex-wrap overflow-hidden rounded border border-solid border-lighter-gray p-0 leading-7"
                   >
                     <div className="flex w-1/3 border-lighter-gray bg-light-gray bg-opacity-40 px-[0.2vw]">
@@ -409,8 +468,11 @@ const Register: NextPage = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm mb-2 block text-gray">Prénom</label>
+                  <label className="text-sm mb-2 block text-gray">Nom et Prénom</label>
                   <input
+                    id="fristName"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                     type="text"
                     className="text-gray-700 bg- mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
@@ -422,8 +484,10 @@ const Register: NextPage = () => {
                     Nom d'artiste
                   </label>
                   <input
+                    id="username"
+                    value={formData.username}
+                    onChange={(e) => setFormData({...formData, username: e.target.value})}
                     type="text"
-                    name="username"
                     placeholder="Snow"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
@@ -436,10 +500,12 @@ const Register: NextPage = () => {
                   </label>
                   <div className="m-0 flex flex-row p-0 ">
                     <select
+                      id="phoneNumberCountry"
+                      value={formData.phoneNumberCountry}
+                      onChange={(e) => setFormData({...formData, phoneNumberCountry: e.target.value})}
                       className="text-gray-700 block w-1/3 rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                       aria-required="true"
                       aria-invalid="false"
-                      name="phoneNumberCountry"
                     >
                       <option value="">+XX</option>
                       <option value="" disabled>
@@ -468,9 +534,10 @@ const Register: NextPage = () => {
                       <option value="+216 (Tunisie)">+216 (Tunisie)</option>
                     </select>
                     <input
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
                       type="tel"
                       placeholder="XX XX XX XX XX"
-                      name="phoneNumber"
                       className="text-gray-700 block w-2/3 rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                       required
                     />
@@ -482,8 +549,9 @@ const Register: NextPage = () => {
                     Adresse E-mail
                   </label>
                   <input
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     type="email"
-                    name="email"
                     id="emailArtist"
                     placeholder="example@example.com"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white   focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
@@ -493,8 +561,9 @@ const Register: NextPage = () => {
                 <div>
                   <label className="text-sm mb-2 block text-gray">Age</label>
                   <input
+                    value={formData.age}
+                    onChange={(e) => setFormData({...formData, age: e.target.value})}
                     type="number"
-                    name="age"
                     id="age"
                     placeholder="1-100"
                     min="1"
@@ -507,10 +576,12 @@ const Register: NextPage = () => {
                   <label className="text-sm mb-2 block text-gray">Pays</label>
 
                   <select
+                    value={formData.country}
+                    onChange={(e) => setFormData({...formData, country: e.target.value})}
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white   focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     aria-required="true"
                     aria-invalid="false"
-                    name="menu-759"
+
                   >
                     <option value="">Veuillez choisir un pays</option>
                     <option value="" disabled>
@@ -518,7 +589,7 @@ const Register: NextPage = () => {
                     </option>
                     <option value="Algérie">Algérie</option>
                     <option value="Bénin">Bénin</option>
-                    <option value="urkina Faso">Burkina Faso</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
                     <option value="Cameroun">Cameroun</option>
                     <option value="République centrafricaine">
                       République centrafricaine
@@ -530,7 +601,7 @@ const Register: NextPage = () => {
                     <option value="Gabon">Gabon</option>
                     <option value="Guinée">Guinée</option>
                     <option value="Mali">Mali</option>
-                    <option value="Maronc">Maronc</option>
+                    <option value="Maroc">Maroc</option>
                     <option value="RDC">RDC</option>
                     <option value="Sénégal">Sénégal</option>
                     <option value="Togo">Togo</option>
@@ -541,8 +612,9 @@ const Register: NextPage = () => {
                 <div>
                   <label className="text-sm mb-2 block text-gray">Ville</label>
                   <input
+                    value={formData.city}
+                    onChange={(e) => setFormData({...formData, city: e.target.value})}
                     type="text"
-                    name="city"
                     id="city"
                     placeholder="Exemple Lagos"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white   focus:border-secondary focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
@@ -554,8 +626,9 @@ const Register: NextPage = () => {
                     Mot de passe
                   </label>
                   <input
+                    value={formData.password}
+                    onChange={(e) => setFormData({...formData, password: e.target.value})}
                     type="password"
-                    name="password"
                     placeholder="Entrez votre mot de passe"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
@@ -567,20 +640,21 @@ const Register: NextPage = () => {
                     Confirmez le mot de passe
                   </label>
                   <input
+                    value={formData.confirmPassword}
+                    onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
                     type="password"
-                    name="password"
                     placeholder="Confirmez votre mot de passe"
                     className="text-gray-700 mt-2 block w-full rounded border border-solid border-lighter-gray bg-light-gray bg-opacity-40 px-5 py-3 text-white  focus:border-secondary  focus:bg-black focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-40"
                     required
                   />
                 </div>
                 <button
-                  className={`button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold capitalize tracking-wide text-black transition-colors duration-300  focus:bg-primary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50 ${
-                    !capcha ? 'hidden' : 'block'
-                  }`}
-                >
-                  <span className="inline-flex items-center">
-                    Créer un compte
+                  type='submit'
+                  onClick={onSignup}
+                  className="button-animate text-sm w-full transform rounded bg-secondary px-10 py-3 font-bold tracking-wide text-black transition-colors duration-300 focus:bg-primary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-50">
+                  <span 
+                  className="inline-flex items-center">
+                    {loading ? "Processing" : "Créer un compte"}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 rtl:-scale-x-100"
@@ -597,7 +671,7 @@ const Register: NextPage = () => {
                 </button>
                 <ReCAPTCHA
                   sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                  onchange={recaptchaChange}
+                  onChange={recaptchaChange}
                 />
               </form>
             </div>
