@@ -24,7 +24,8 @@ function useIntersectionObserver(options: IntersectionObserverInit) {
     }
   }, [options])
 
-  return {}
+  return null; // Return null instead of an empty object
 }
+
 
 export default useIntersectionObserver
