@@ -1,6 +1,9 @@
-import { db } from "../../../dbConfig/dbPrisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import bcryptjs from 'bcryptjs';
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+const db = prisma
 
 export default async function POST(request: NextApiRequest, response: NextApiResponse) {
   try {

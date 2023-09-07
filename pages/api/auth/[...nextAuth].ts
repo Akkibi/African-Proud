@@ -1,51 +1,16 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth, { NextAuthOptions, Session, Token } from "next-auth";
+import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { db } from "../../../dbConfig/dbPrisma";
 import { compare } from "bcryptjs";
+import { PrismaClient } from '@prisma/client'
 
-// Définissez une structure de session personnalisée
-interface CustomSession extends Session {
-  user: {
-    id: string;
-    email: string;
-    isAdmin: boolean;
-    userType: string;
-  };
-  accessToken: string;
-}
+const prisma = new PrismaClient()
+const db = prisma
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
-  },
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true;
-    },
-    async jwt({ token, user }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
-      if (user) {
-        token.accessToken = user.access_token
-        token.id = user.id,
-        token.role = user.role
-        token.userType = user.userType
-        token.username = user.username
-      }
-
-      return token
-    },
-    async session({ session, token }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-      session.accessToken = token.accessToken
-      session.user.id = token.id
-      session.user.role = token.role
-      session.user.userType = token.userType
-      session.user.username = token.username
-      
-      return session
-    },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
@@ -60,32 +25,57 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('Veuillez sais un email et un mot de passe')
+          throw new Error('Veuillez saisir un email et un mot de passe');
         }
-        const existingUser = await db.user.findUnique({
+        const existingUser = await prisma.user.findUnique({
           where: { email: credentials?.email }
         });
         if (!existingUser) {
-          throw new Error('Email ou mot de passe invalide.')
+          throw new Error('Email ou mot de passe invalide.');
         }
         const passwordMatch = await compare(credentials.password, existingUser.password);
         if (!passwordMatch) {
-          throw new Error('Email ou mot de passe invalide.')
+          throw new Error('Email ou mot de passe invalide.');
         }
         if (!existingUser.isVerified) {
-          throw new Error('Veuillez vérifier votre email.')
+          throw new Error('Veuillez vérifier votre email.');
         }
-        // Return a Promise of the User object with id as a string
+     
         return {
-          id: existingUser.id.toString(), // Convert id to string
+          id: existingUser.id.toString(),
           email: existingUser.email,
           username: existingUser.username,
           role: existingUser.role,
           userType: existingUser.userType,
+          isVerified: existingUser.isVerified, 
         };
       }
     })
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+        token.userType = user.userType; 
+        token.username = user.username; 
+        token.isVerified = user.isVerified;
+      }
+    
+      return token;
+    },
+    
+    async session({ session, token }) {
+      session.id = token.id;
+      session.role = token.role;
+      session.userType = token.userType; 
+      session.username = token.username; 
+      session.isVerified = token.isVerified
+    
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);

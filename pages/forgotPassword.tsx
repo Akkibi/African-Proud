@@ -13,7 +13,7 @@ const ForgotPassword: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
 
-  const resetPassword = async (e) => {
+  const resetPassword = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

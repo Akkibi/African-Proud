@@ -13,7 +13,7 @@ const AjoutMusic: NextPage = () => {
   const [error, setError] = useState('');
   const [isPublished, setIsPublished] = useState('false');
 
-  const addMusic = async (e) => {
+  const addMusic = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

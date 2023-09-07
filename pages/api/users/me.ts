@@ -1,6 +1,9 @@
-import { db } from "../../../dbConfig/dbPrisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+const db = prisma
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -12,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(401).json({ error: "Vous n'êtes pas connecté" });
     }
 
-    const userId = parseInt(session.user.id, 10);
+    const userId = parseInt(session.id, 10);
 
     // Recherchez l'utilisateur dans la table User
     const user = await db.user.findUnique({

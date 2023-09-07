@@ -1,5 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { db } from "../../../dbConfig/dbPrisma";
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+const db = prisma
+
 
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     try {

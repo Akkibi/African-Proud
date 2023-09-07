@@ -7,11 +7,21 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
+interface UserData {
+  id: number;
+  genre: string;
+  username: string;
+  email: string;
+  phoneNumberCountry: string;
+  phoneNumber: string;
+  contrat: string;
+}
+
 const Profile: NextPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const { id } = router.query;
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
     // Fonction pour récupérer les informations de l'utilisateur depuis l'API
@@ -28,9 +38,8 @@ const Profile: NextPage = () => {
             phoneNumber: userData.user.phoneNumber,
             phoneNumberCountry: userData.user.phoneNumberCountry,
             email: userData.user.email,
-            isAdmin: userData.user.isAdmin,
-            contrat: userData.user.contrat, // Assurez-vous de récupérer également le contrat ici
-          });
+            contrat: userData.user.contrat, // Convert contrat to string
+          } as UserData);
         }
       } catch (error: any) {
         console.error(error.message);
@@ -39,7 +48,7 @@ const Profile: NextPage = () => {
     };
 
     if (id) {
-      fetchUserData(); // Appelez la fonction pour récupérer les données de l'utilisateur
+      fetchUserData(); 
     }
   }, [id]);
 
@@ -51,12 +60,12 @@ const Profile: NextPage = () => {
       // Si un ID de profil est spécifié dans l'URL
       if (id) {
         // Convertissez l'ID de chaîne en nombre
-        const profileIdNumber = parseInt(id);
+        const profileIdNumber = parseInt(id as string); // Use type assertion here
 
         // Vérifiez si l'ID de session ne correspond pas à l'ID de profil demandé
-        if (session.user.id !== profileIdNumber) {
+         if (session.id !== profileIdNumber.toString()) { 
           // Redirigez l'utilisateur vers son propre profil
-          router.push(`/profile/${session.user.id}`);
+          router.push(`/profile/${session.id}`);
           return; // Sortez de la fonction pour éviter de charger les données du profil demandé
         }
       }
@@ -76,14 +85,16 @@ const Profile: NextPage = () => {
               <p className="text-xl text-black font-bold">Genre: {userData?.genre}</p>
               <p className="text-xl text-black font-bold">Email: {userData?.email}</p>
               <p className="text-xl text-black font-bold">
-                Téléphone: {userData?.phoneNumberCountry + userData?.phoneNumber}
+                Téléphone: {userData?.phoneNumberCountry ? userData.phoneNumberCountry + ' ' : ''}
+                {userData?.phoneNumber}
               </p>
               {userData?.contrat && (
                 <a href={userData?.contrat} download className="text-xl text-black font-bold">
                   Télécharger le contrat
                 </a>
               )}
-              {session?.user.userType === "artiste" && (
+              </div>
+              {session?.userType === "artiste" && (
                 <button
                   onClick={() =>
                     window.open(
@@ -96,7 +107,7 @@ const Profile: NextPage = () => {
                   Participer Au Concours
                 </button>
               )}
-            </div>
+            
           </div>
         </div>
       </div>

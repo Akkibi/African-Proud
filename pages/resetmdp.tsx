@@ -12,7 +12,7 @@ const ResetMdp: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const resetPassword = async (e) => {
+  const resetPassword = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

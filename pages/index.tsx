@@ -5,16 +5,9 @@ import PartnersSection from './components/partners-section'
 import Footer from './components/footer'
 import Navbar from './components/navbar'
 import { useRouter } from 'next/router';
-import useIntersectionObserver from './components/useIntersectionObserver'
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const IntersectionObserverInit = {
-    root: null, // Use the viewport as the root
-    rootMargin: '0px',
-    threshold: 0.5, // The percentage of the element's visibility needed to trigger the intersection
-  }
-  useIntersectionObserver(IntersectionObserverInit)
 
   return (
     <>

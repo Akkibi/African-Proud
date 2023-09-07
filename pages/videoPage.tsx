@@ -1,42 +1,39 @@
-"use client"
-import type { NextPage } from 'next'
-import Footer from './components/footer'
-import Navbar from './components/navbar'
-import DateFormatter from './components/dateFormatter'
-import { useState, useEffect } from 'react'
-import { time } from 'console'
-import Video from "../models/videoModel";
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import type { NextPage } from 'next';
+import Footer from './components/footer';
+import Navbar from './components/navbar';
+import DateFormatter from './components/dateFormatter';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
-let date: Date = new Date()
+interface MediaData {
+  id: number;
+  title: string;
+  content: string;
+  link: string;
+  published: boolean;
+  createdAt: string;
+}
 
 const VideoPage: NextPage = () => {
-  const [data, setData] = useState([])
-  const [isLoading, setLoading] = useState(false)
-  const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null)
-  const router = useRouter()
+  const [data, setData] = useState<MediaData[]>([]);
+  const [isLoading, setLoading] = useState(false);
+  const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
+  const router = useRouter();
   const { data: session, status } = useSession();
 
-   useEffect(() => {
- 
-    if (!session) {
-      router.push('/sign-in'); 
-    }
-  }, [session, router]);
-
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch('/api/dashboard/getVideo')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
-  }, [])
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data || data.length === 0) return <p>No profile data</p>
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <>
       <Navbar />
@@ -46,73 +43,75 @@ const VideoPage: NextPage = () => {
           <span>Vidéo</span>
         </h1>
         <div className="container mx-auto px-5 py-24">
-          <div className="-m-4 flex flex-wrap">
-            {!data && (
-              <p className="w-full p-4 text-center">
-                Acune vidéo n'à encore été posté
-              </p>
-            )}
-            {data &&
-              data.map((data) => (
-                <div className="p-4 md:w-1/2 lg:w-1/3">
-                  <div className="h-full overflow-hidden rounded-lg border border-solid border-light-gray border-opacity-60">
-                    <img
-                      onClick={() => setSelectedVideoId(data.id)}
-                      className="w-full cursor-pointer object-cover object-center md:h-36 lg:h-48"
-                      src={
-                        'https://i.ytimg.com/vi/' + data.link + '/hqdefault.jpg'
-                      }
-                      alt="blog"
-                    />
-                    <div className="p-6">
-                      <h2 className="mt-0 text-xl font-medium text-gray">
-                        <DateFormatter
-                          date={new Date(data.createdAt)}
-                          time={false}
-                        />
-                      </h2>
-                      <h1 className="text-lg mb-3 font-medium text-white">
-                        {data.title}
-                      </h1>
-                      <p className="mb-3 line-clamp-3 overflow-ellipsis leading-relaxed">
-                        {data.content}
-                      </p>
-                      <div className="flex flex-wrap items-center ">
-                        <a
-                          // href="#"
-                          onClick={() => setSelectedVideoId(data.id)}
-                          className="inline-flex cursor-pointer items-center text-secondary md:mb-2 lg:mb-0"
-                        >
-                          Voir la vidéo
-                          <svg
-                            className="ml-2 h-4 w-4"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+          {session ? (
+            <div className="-m-4 flex flex-wrap">
+              {!data && (
+                <p className="w-full p-4 text-center">
+                  Aucune vidéo n'a encore été postée
+                </p>
+              )}
+              {data &&
+                data.map((video) => (
+                  <div className="p-4 md:w-1/2 lg:w-1/3" key={video.id}>
+                    <div className="h-full overflow-hidden rounded-lg border border-solid border-light-gray border-opacity-60">
+                      <img
+                        onClick={() => setSelectedVideoId(video.id)}
+                        className="w-full cursor-pointer object-cover object-center md:h-36 lg:h-48"
+                        src={`https://i.ytimg.com/vi/${video.link}/hqdefault.jpg`}
+                        alt="video-thumbnail"
+                      />
+                      <div className="p-6">
+                        <h2 className="mt-0 text-xl font-medium text-gray">
+                          <DateFormatter date={new Date(video.createdAt)} time={false} />
+                        </h2>
+                        <h1 className="text-lg mb-3 font-medium text-white">
+                          {video.title}
+                        </h1>
+                        <p className="mb-3 line-clamp-3 overflow-ellipsis leading-relaxed">
+                          {video.content}
+                        </p>
+                        <div className="flex flex-wrap items-center">
+                          <a
+                            onClick={() => setSelectedVideoId(video.id)}
+                            className="inline-flex cursor-pointer items-center text-secondary md:mb-2 lg:mb-0"
                           >
-                            <path d="M5 12h14"></path>
-                            <path d="M12 5l7 7-7 7"></path>
-                          </svg>
-                        </a>
-                        <span className="text-sm ml-auto mr-3 inline-flex items-center border-r-2 border-gray py-1 pr-3 leading-none text-gray md:ml-0 lg:ml-auto">
-                        </span>
+                            Voir la vidéo
+                            <svg
+                              className="ml-2 h-4 w-4"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12h14"></path>
+                              <path d="M12 5l7 7-7 7"></path>
+                            </svg>
+                          </a>
+                          <span className="text-sm ml-auto mr-3 inline-flex items-center border-r-2 border-gray py-1 pr-3 leading-none text-gray md:ml-0 lg:ml-auto">
+                            {/* Insérez ici d'autres éléments si nécessaire */}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))}
+            </div>
+          ) : (
+            <p className="text-center text-white">
+              Veuillez vous connecter pour voir le contenu de cette page.
+            </p>
+          )}
         </div>
       </section>
-      {data.map((data) => (
+
+      {data.map((video) => (
         <div
-          key={data.id}
-          id={data.id}
+          key={video.id}
+          id={video.id.toString()}
           className={`scroll fixed left-0 top-0 z-50 h-full w-full overflow-y-scroll bg-[rgba(0,0,0,0.75)] text-white ${
-            selectedVideoId === data.id ? 'block' : 'hidden'
+            selectedVideoId === video.id ? 'block' : 'hidden'
           }`}
         >
           <div
@@ -132,31 +131,25 @@ const VideoPage: NextPage = () => {
             </svg>
             Retour
           </div>
-          <div className=" mx-auto flex min-h-screen max-w-[1200px] flex-col gap-5 px-5 py-24">
-            <div className="aspect-video w-full" allow="fullscreen;">
+          <div className="mx-auto flex min-h-screen max-w-[1200px] flex-col gap-5 px-5 py-24">
+            <div className="aspect-video w-full">
               <iframe
                 width="100%"
                 height="100%"
-      
                 title="YouTube video player"
-                allowFullScreen="allowfullscreen"
-                mozallowfullscreen="mozallowfullscreen"
-                msallowfullscreen="msallowfullscreen"
-                oallowfullscreen="oallowfullscreen"
-                webkitallowfullscreen="webkitallowfullscreen"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope, fullscreen;
-              picture-in-picture; web-share"
+                allowFullScreen
+                src={video.link}
               ></iframe>
             </div>
-            <h1 className="m-0 text-31xl">{data.title}</h1>
-            <DateFormatter date={new Date(data.createdAt)} time={true} />
-            <p className="m-0">{data.content}</p>
+            <h1 className="m-0 text-31xl">{video.title}</h1>
+            <DateFormatter date={new Date(video.createdAt)} time={true} />
+            <p className="m-0">{video.content}</p>
           </div>
         </div>
       ))}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default VideoPage
+export default VideoPage;

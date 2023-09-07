@@ -1,4 +1,3 @@
-"use client"
 import type { NextPage } from 'next'
 import Footer from './components/footer'
 import Navbar from './components/navbar'
@@ -7,110 +6,124 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
-let date: Date = new Date()
+interface Music {
+  id: number;
+  title: string;
+  content: string;
+  link: string;
+  createdAt: string;
+}
 
 const MusicPage: NextPage = () => {
-  const [data, setData] = useState([])
-  const [isLoading, setLoading] = useState(false)
-  const [selectedMusicId, setSelectedMusicId] = useState<number | null>(null)
-  const router = useRouter()
-  const { data: session, status } = useSession();
 
-   useEffect(() => {
- 
-    if (!session) {
-      router.push('/sign-in'); 
-    }
-  }, [session, router]);
+  const [musicData, setMusicData] = useState<Music[]>([]);
+  const [isLoading, setLoading] = useState(false);
+  const [selectedMusicId, setSelectedMusicId] = useState<number | null>(null);
+  const router = useRouter();
+  const { data: session } = useSession();
 
   useEffect(() => {
-    setLoading(true)
+    if (!session) {
+      return; 
+    }
+
+    setLoading(true);
     fetch('/api/dashboard/getMusic')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
-  }, [])
+        setMusicData(data);
+        setLoading(false);
+      });
+  }, [session]);
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data || data.length === 0) return <p>No profile data</p>
+  const handleMusicClick = (musicId: number) => {
+    setSelectedMusicId(musicId);
+  };
+
+  const handleCloseMusic = () => {
+    setSelectedMusicId(null);
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <>
       <Navbar />
-
-      <section className="min-h-screen overflow-hidden py-10 text-gray">
+      <section className="min-h-screen py-10 text-gray">
         <h1 className="text-animate w-full text-center text-11xl font-bold text-white sm:text-31xl">
-          <span>Musique</span>
+          <span>Vidéo</span>
         </h1>
         <div className="container mx-auto px-5 py-24">
-          {!data && (
-            <p className="w-full p-4 text-center">
-              Acune musique n'à encore été posté
-            </p>
-          )}
-          {data &&
-            data.map((data) => (
-              <div className=" border-t border-solid border-light-gray">
-                <div className="flex flex-wrap gap-4 py-4 md:flex-nowrap">
-                  <div className="mb-6 flex flex-shrink-0 flex-col md:mb-0 md:w-64">
-                    <img
-                      onClick={() => setSelectedMusicId(data.id)}
-                      className="h-full w-full cursor-pointer rounded object-cover object-center"
-                      src={
-                        'https://i.ytimg.com/vi/' + data.link + '/hqdefault.jpg'
-                      }
-                      alt="blog"
-                    />
-                  </div>
-                  <div className="md:flex-grow">
-                    <span className="text-sm font-bold text-gray">
-                      <DateFormatter
-                        date={new Date(data.createdAt)}
-                        time={false}
-                      />
-                    </span>
-                    <h2 className="text-2xl   mb-2 font-medium text-white">
-                      {data.title}
-                    </h2>
-                    <p className="line-clamp-2 leading-relaxed">
-                      {data.content}
-                    </p>
-                    <a
-                      className=" my-2 inline-flex cursor-pointer items-center text-secondary"
-                      onClick={() => setSelectedMusicId(data.id)}
+          {session ? (
+            <div className="-m-4 flex flex-wrap">
+              {!musicData && (
+                <p className="w-full p-4 text-center">
+                  Aucune vidéo n'a encore été postée
+                </p>
+              )}
+              {musicData && musicData.map((music) => (
+            <div
+              key={music.id}
+              className="border-t border-solid border-light-gray"
+            >
+              <div className="flex flex-wrap gap-4 py-4 md:flex-nowrap">
+                <div className="mb-6 flex flex-shrink-0 flex-col md:mb-0 md:w-64">
+                  <img
+                    onClick={() => handleMusicClick(music.id)}
+                    className="h-full w-full cursor-pointer rounded object-cover object-center"
+                    src={`https://i.ytimg.com/vi/${music.link}/hqdefault.jpg`}
+                    alt="music"
+                  />
+                </div>
+                <div className="md:flex-grow">
+                  <span className="text-sm font-bold text-gray">
+                    <DateFormatter date={new Date(music.createdAt)} time={false} />
+                  </span>
+                  <h2 className="text-2xl mb-2 font-medium text-white">
+                    {music.title}
+                  </h2>
+                  <p className="line-clamp-2 leading-relaxed">{music.content}</p>
+                  <a
+                    className="my-2 inline-flex cursor-pointer items-center text-secondary"
+                    onClick={() => handleMusicClick(music.id)}
+                  >
+                    Voir la vidéo
+                    <svg
+                      className="ml-2 h-4 w-4"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
-                      Voir la vidéo
-                      <svg
-                        className="ml-2 h-4 w-4"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </div>
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+          ) : (
+            <p className="text-center text-white">
+              Veuillez vous connecter pour voir le contenu de cette page.
+            </p>
+          )}
         </div>
       </section>
-      {data.map((data) => (
+      {musicData.map((music) => (
         <div
-          key={data.id}
-          id={data.id}
+          key={music.id}
+          id={music.id.toString()}
           className={`scroll fixed left-0 top-0 z-50 h-full w-full overflow-y-scroll bg-[rgba(0,0,0,0.75)] text-white ${
-            selectedMusicId === data.id ? 'block' : 'hidden'
+            selectedMusicId === music.id ? 'block' : 'hidden'
           }`}
         >
           <div
             className="fixed flex cursor-pointer select-none items-center fill-white p-5 text-white"
-            onClick={() => setSelectedMusicId(null)}
+            onClick={handleCloseMusic}
           >
             <svg
               className="left-0 top-0 z-50 h-8 w-8"
@@ -125,35 +138,25 @@ const MusicPage: NextPage = () => {
             </svg>
             Retour
           </div>
-          <div className=" mx-auto flex min-h-screen max-w-[1200px] flex-col gap-5 px-5 py-24">
-            <div className="aspect-video w-full" allow="fullscreen;">
+          <div className="mx-auto flex min-h-screen max-w-[1200px] flex-col gap-5 px-5 py-24">
+            <div className="aspect-video w-full">
               <iframe
                 width="100%"
                 height="100%"
-                src={
-                  selectedMusicId === data.id
-                    ? 'https://www.youtube.com/embed/' + data.link.toString()
-                    : 'https://www.youtube.com/embed/'
-                }
+                src={music.link}
                 title="YouTube video player"
-                allowFullScreen="allowfullscreen"
-                mozallowfullscreen="mozallowfullscreen"
-                msallowfullscreen="msallowfullscreen"
-                oallowfullscreen="oallowfullscreen"
-                webkitallowfullscreen="webkitallowfullscreen"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope, fullscreen;
-              picture-in-picture; web-share"
+                allowFullScreen
               ></iframe>
             </div>
-            <h1 className="m-0 text-31xl">{data.title}</h1>
-            <DateFormatter date={new Date(data.createdAt)} time={true} />
-            <p className="m-0">{data.content}</p>
+            <h1 className="m-0 text-31xl">{music.title}</h1>
+            <DateFormatter date={new Date(music.createdAt)} time={true} />
+            <p className="m-0">{music.content}</p>
           </div>
         </div>
       ))}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default MusicPage
+export default MusicPage;

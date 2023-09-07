@@ -1,7 +1,6 @@
 "use client";
 import type { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';;
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -42,7 +41,7 @@ const Register: NextPage = () => {
     city: '', 
   });
 
-  const onSignup = async (e) => {
+  const onSignup = async (e:any) => {
     e.preventDefault();
   
     if (
@@ -87,7 +86,7 @@ const Register: NextPage = () => {
     }
   }, [formData]);
 
-  const recaptchaChange = (value) => {
+  const recaptchaChange = (value: any) => {
     // Gérez le changement de ReCAPTCHA ici
     setCaptcha(value);
   };
@@ -211,22 +210,20 @@ const Register: NextPage = () => {
               >
                 <div>
                   <label className="text-sm mb-2 block text-gray">Genre</label>
-                  <fieldset                  
-                    value={formData.genre}
-                    onChange={(e) => setFormData({...formData, genre: e.target.value})}
-                    className=" flex	w-full select-none list-none flex-wrap overflow-hidden rounded border border-solid border-lighter-gray p-0 leading-7"
-                  >
+                  <fieldset className="flex w-full select-none list-none flex-wrap overflow-hidden rounded border border-solid border-lighter-gray p-0 leading-7">
                     <div className="flex w-1/3 border-lighter-gray bg-light-gray bg-opacity-40 px-[0.2vw]">
                       <input
                         type="radio"
                         id="malePublic"
                         name="public"
                         value="homme"
+                        checked={formData.genre === 'homme'} // Check if this option is selected
+                        onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
                         required
                       />
                       <label
                         htmlFor="malePublic"
-                        className=" w-full py-1 text-center leading-8 text-white"
+                        className="w-full py-1 text-center leading-8 text-white"
                       >
                         Homme
                       </label>
@@ -561,8 +558,8 @@ const Register: NextPage = () => {
                 <div>
                   <label className="text-sm mb-2 block text-gray">Age</label>
                   <input
-                    value={formData.age}
-                    onChange={(e) => setFormData({...formData, age: e.target.value})}
+                    value={formData.age.toString()} // Convert age to string for input value
+                    onChange={(e) => setFormData({ ...formData, age: parseInt(e.target.value) })}
                     type="number"
                     id="age"
                     placeholder="1-100"

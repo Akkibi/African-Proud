@@ -12,7 +12,7 @@ const AjoutVideo: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const addVideo = async (e) => {
+  const addVideo = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

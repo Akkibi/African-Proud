@@ -32,7 +32,7 @@ const ModifierMusic: NextPage = () => {
     }
   }, [id]);
 
-  const updateMusic = async (e) => {
+  const updateMusic = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

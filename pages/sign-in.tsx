@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import { signIn, useSession } from 'next-auth/react'
@@ -21,7 +21,7 @@ const SignIn: NextPage = () => {
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onLogin = async (e) => {
+  const onLogin = async (e:any) => {
     e.preventDefault();
     setLoading(true);
     await signIn("credentials", {
@@ -38,7 +38,7 @@ const SignIn: NextPage = () => {
           } else {
             setShowResendButton(false);
           }
-        } else if (callback?.ok && callback?.error) {
+        } else {
           toast.success("Connexion réussie.");
           router.push(`/`);
         }

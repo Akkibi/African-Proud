@@ -25,18 +25,27 @@ const Concours: NextPage = () => {
   }, [session, router]);
 
   const downloadFileAtURL = (url: string) => {
-    fetch(url).then((response) => {
-      response.blob().then((blob) => {
-        const url = window.URL.createObjectURL(blob)
-        const aTag = document.createElement('a')
-        aTag.href = url
-        aTag.setAttribute('download', url.split('/').pop())
-        document.body.appendChild(aTag)
-        aTag.click()
-        aTag.remove()
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
       })
-    })
-  }
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const aTag = document.createElement('a');
+        aTag.href = url;
+        aTag.setAttribute('download', url.split('/').pop() || 'downloaded-file'); // Use a fallback name if url.split('/').pop() is undefined
+        document.body.appendChild(aTag);
+        aTag.click();
+        aTag.remove();
+      })
+      .catch((error) => {
+        console.error('Error downloading file:', error);
+      });
+  };
+  
   return (
     <>
       <Navbar />

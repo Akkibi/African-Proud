@@ -1,8 +1,6 @@
-import axios from 'axios';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import React from 'react';
 import { useSession, signOut } from 'next-auth/react';
 
@@ -97,7 +95,7 @@ const Navbar: NextPage = () => {
             <>
               <button
                 className="ml-1 mt-4 inline-flex items-center rounded border-0 bg-white px-5 py-[9.5px] font-bold opacity-75 duration-200 hover:opacity-100 focus:outline-none md:mt-0"
-                onClick={() => router.push(`/profile/${session?.user.id}`)}
+                onClick={() => router.push(`/profile/${session?.id}`)}
               >
                 Profile
               </button>
@@ -192,7 +190,7 @@ const Navbar: NextPage = () => {
               <>
               <button
                   className="ml-1 mt-4 inline-flex items-center rounded border-0 bg-white px-5 py-[9.5px] font-bold opacity-75 duration-200 hover:opacity-100 focus:outline-none md:mt-0"
-                  onClick={() => router.push(`/profile/${session.user.id}`)}
+                  onClick={() => router.push(`/profile/${session.id}`)}
                 >
                   Profile
                 </button>

@@ -33,7 +33,7 @@ const ModifierVideo: NextPage = () => {
     }
   }, [id]);
 
-  const updateVideo = async (e) => {
+  const updateVideo = async (e:any) => {
     e.preventDefault();
     try {
       setLoading(true);

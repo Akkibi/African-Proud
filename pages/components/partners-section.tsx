@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-
 import useIntersectionObserver from './useIntersectionObserver'
 
 const PartnersSection: NextPage = () => {

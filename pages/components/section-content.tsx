@@ -5,7 +5,6 @@ import useIntersectionObserver from './useIntersectionObserver'
 import router from 'next/router'
 
 type SectionContentType = {
-  /** Style props */
   frameHeight?: Property.Height
 }
 
